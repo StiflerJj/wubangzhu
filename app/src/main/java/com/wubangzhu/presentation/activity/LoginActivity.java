@@ -40,6 +40,8 @@ public class LoginActivity extends AppCompatActivity {
     EditText mPassword;
     @BindView(R.id.login_btn)
     Button login;
+    @BindView(R.id.regist_btn)
+    Button regist;
     @BindView(R.id.tryit)
     TextView tryit;
     //密碼是否可見
@@ -127,5 +129,8 @@ public class LoginActivity extends AppCompatActivity {
     }
     @OnClick(R.id.tryit) void setTryit(){
         CommonUtil.showToast(this,"try it");
+    }
+    @OnClick(R.id.regist_btn) void setRegist(){
+        ActivityUtils.startActivity(RegistActivity.class);
     }
 }
