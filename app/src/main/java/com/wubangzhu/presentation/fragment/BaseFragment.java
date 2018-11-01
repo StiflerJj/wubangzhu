@@ -14,6 +14,6 @@ public class BaseFragment extends Fragment implements HandleBackInterface{
 
     public void updateFragment(Fragment fragment, int index){
         MainActivity mainActivity = (MainActivity)getActivity();
-//        mainActivity.updateFragment(fragment,index);
+        mainActivity.updateFragment(fragment,index);
     }
 }

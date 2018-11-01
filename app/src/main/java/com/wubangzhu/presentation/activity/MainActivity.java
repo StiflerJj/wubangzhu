@@ -2,13 +2,10 @@ package com.wubangzhu.presentation.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
@@ -20,7 +17,7 @@ import android.widget.TextView;
 
 import com.wubangzhu.R;
 import com.wubangzhu.presentation.fragment.AllGoodsFragment;
-import com.wubangzhu.presentation.fragment.DealFragment;
+import com.wubangzhu.presentation.fragment.GameFragment;
 import com.wubangzhu.presentation.fragment.MainFragment;
 import com.wubangzhu.presentation.fragment.UserInfoFragment;
 import com.wubangzhu.presentation.widgets.NoScrollViewPager;
@@ -67,13 +64,13 @@ public class MainActivity extends BaseActivity{
 
     MainFragment tab01 = new MainFragment();
     AllGoodsFragment tab02 = new AllGoodsFragment();
-    DealFragment tab03 = new DealFragment();
+    GameFragment tab03 = new GameFragment();
     UserInfoFragment tab04 = new UserInfoFragment();
-    Fragment[] fragments = {tab01, tab02, tab03, tab04};
+    android.support.v4.app.Fragment[] fragments = {tab01, tab02, tab03, tab04};
     boolean[] fragmentsUpdateFlag = {false, false, false, false};
     String username,userid;
 
-    public void updateFragment(Fragment fragment, int index) {
+    public void updateFragment(android.support.v4.app.Fragment fragment, int index) {
         fragments[index] = fragment;
         fragmentsUpdateFlag[index] = true;
         mSectionsPagerAdapter.notifyDataSetChanged();
@@ -93,14 +90,6 @@ public class MainActivity extends BaseActivity{
         // Set up the ViewPager with the sections adapter.
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setNoScroll(true);
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
         initView();
     }
     private void initView() {
@@ -167,8 +156,8 @@ public class MainActivity extends BaseActivity{
         }
 
         @Override
-        public Fragment getItem(int position) {
-            Fragment fragment = fragments[position % fragments.length];
+        public android.support.v4.app.Fragment getItem(int position) {
+            android.support.v4.app.Fragment fragment = fragments[position % fragments.length];
 //            LogUtils.i("getItem:position=" + position + ",fragment:"
 //                    + fragment.getClass().getName() + ",fragment.tag="
 //                    + fragment.getTag());
@@ -178,7 +167,7 @@ public class MainActivity extends BaseActivity{
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             //得到缓存的fragment
-            Fragment fragment = (Fragment) super.instantiateItem(container,
+            android.support.v4.app.Fragment fragment = (android.support.v4.app.Fragment) super.instantiateItem(container,
                     position);
             //得到tag，这点很重要
             String fragmentTag = fragment.getTag();
