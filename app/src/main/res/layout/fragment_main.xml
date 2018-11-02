@@ -1,12 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent">
     <com.youth.banner.Banner
         android:id="@+id/banber_main"
         android:layout_width="match_parent"
-        android:layout_height="230dp"
+        android:layout_height="200dp"
         ></com.youth.banner.Banner>
+    <com.kd.easybarrage.BarrageView
+        android:id="@+id/barrageView"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_above="@+id/send"
+        app:allow_repeat="true"
+        app:border_color="@color/colorAccent"
+        app:line_height="20dp"
+        app:max_text_size="12"
+        app:min_text_size="12"
+        app:random_color="true"
+        app:size="200"/>
 
+    <LinearLayout
+        android:layout_margin="40dp"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <Button
+            android:id="@+id/btn_gotomall"
+            android:layout_weight="1"
+            android:background="@color/black"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <Button
+            android:id="@+id/btn_gotogame"
+            android:layout_weight="1"
+            android:background="@color/a1_blue_color"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
 </LinearLayout>
