@@ -10,6 +10,7 @@ public class ShareKeys {
     public static final List<String> images = new ArrayList<>();
     public static final String authorization = "authorization";
     public static final String Login_UserId = "userId";
+    public static final String Login_UKEY = "ukey";
 
     public static ArrayList<String> getImages(){
         images.add("http://img4.imgtn.bdimg.com/it/u=1293919120,3114443152&fm=26&gp=0.jpg");

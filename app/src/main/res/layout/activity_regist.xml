@@ -2,10 +2,22 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <EditText
+        android:id="@+id/input_phone"
+        style="@style/EdittextStyle"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:inputType="text"
+        android:drawableLeft="@drawable/login_img_password"
+        android:hint="@string/phone"
+        android:textColorHint="@color/white"
+        android:background="@drawable/edittext_bg1"
+        />
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <EditText
             android:id="@+id/input_verifycode"
             style="@style/EdittextStyle"

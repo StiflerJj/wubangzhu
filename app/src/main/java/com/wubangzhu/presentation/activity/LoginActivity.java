@@ -22,10 +22,13 @@ import com.wubangzhu.R;
 import com.wubangzhu.domain.http.Callback2;
 import com.wubangzhu.domain.http.api.login.LoginClient;
 import com.wubangzhu.domain.http.request.login.LoginRequest;
+import com.wubangzhu.domain.http.response.login.BaseResponse;
 import com.wubangzhu.domain.http.response.login.LoginResponse;
 import com.wubangzhu.util.CommonUtil;
 import com.wubangzhu.util.ShareData;
 import com.wubangzhu.util.ShareKeys;
+
+import org.json.JSONException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -98,34 +101,53 @@ public class LoginActivity extends AppCompatActivity {
         if(CommonUtil.isBlank(mUserName.getText().toString()) || CommonUtil.isBlank(mPassword.getText().toString())){
             CommonUtil.showToast(LoginActivity.this,R.string.rewrite);
         }
-        LoginRequest loginRequest = new LoginRequest();
-        loginRequest.setUserName(mUserName.getText().toString());
-        loginRequest.setPassWord(mPassword.getText().toString());
-        LoginClient loginClient = new LoginClient();
-        loginClient.postLogin(loginRequest, new Callback2<LoginResponse>() {
+        new LoginClient().postLogin("13722852917", "123456", new Callback2<LoginResponse>() {
             @Override
             public void onFailure(RetrofitError retrofitError) {
-                CommonUtil.showToast(LoginActivity.this,R.string.rewrite);
+
             }
 
             @Override
-            public void onSuccess(LoginResponse response, Response response2) throws InterruptedException {
-                if(response!=null && response2!=null){
-                    ShareData.setShareStringData(ShareKeys.authorization, response2.getHeaders().get(3).getValue());
-                    LogUtils.e(response2.getHeaders().get(3).getValue());
-                    if(response.getStatus()==1){
-                        if(response.getMember()!=null){
-                            ShareData.setShareStringData(ShareKeys.Login_UserId,response.getMember().getId());
-                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
-                            intent.putExtra("username",response.getMember().getPname());
-                            intent.putExtra("id",response.getMember().getId());
-                            ActivityUtils.startActivity(intent);
-                        }
-                    }else
-                        CommonUtil.showToast(LoginActivity.this,R.string.rewrite);
+            public void onSuccess(LoginResponse response, Response response2) throws InterruptedException, JSONException {
+
+                if(response!=null){
+                    if(response.getCode()==0){
+                        ShareData.setShareStringData(ShareKeys.Login_UKEY, response.getUkey());
+                        ShareData.setShareIntData(ShareKeys.Login_UserId, response.getUid());
+                        ActivityUtils.startActivity(MainActivity.class);
+                        finish();
+                    }
                 }
             }
         });
+//        LoginRequest loginRequest = new LoginRequest();
+//        loginRequest.setUserName(mUserName.getText().toString());
+//        loginRequest.setPassWord(mPassword.getText().toString());
+//        LoginClient loginClient = new LoginClient();
+//        loginClient.postLogin(loginRequest, new Callback2<LoginResponse>() {
+//            @Override
+//            public void onFailure(RetrofitError retrofitError) {
+//                CommonUtil.showToast(LoginActivity.this,R.string.rewrite);
+//            }
+//
+//            @Override
+//            public void onSuccess(LoginResponse response, Response response2) throws InterruptedException {
+//                if(response!=null && response2!=null){
+//                    ShareData.setShareStringData(ShareKeys.authorization, response2.getHeaders().get(3).getValue());
+//                    LogUtils.e(response2.getHeaders().get(3).getValue());
+//                    if(response.getStatus()==1){
+//                        if(response.getMember()!=null){
+//                            ShareData.setShareStringData(ShareKeys.Login_UserId,response.getMember().getId());
+//                            Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+//                            intent.putExtra("username",response.getMember().getPname());
+//                            intent.putExtra("id",response.getMember().getId());
+//                            ActivityUtils.startActivity(intent);
+//                        }
+//                    }else
+//                        CommonUtil.showToast(LoginActivity.this,R.string.rewrite);
+//                }
+//            }
+//        });
     }
     @OnClick(R.id.tryit) void setTryit(){
         CommonUtil.showToast(this,"try it");

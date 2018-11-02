@@ -14,14 +14,23 @@ import com.blankj.utilcode.util.ToastUtils;
 import com.kd.easybarrage.Barrage;
 import com.kd.easybarrage.BarrageView;
 import com.wubangzhu.R;
+import com.wubangzhu.domain.http.Callback2;
+import com.wubangzhu.domain.http.api.login.LoginClient;
+import com.wubangzhu.domain.http.response.login.BaseResponse;
+import com.wubangzhu.domain.http.response.login.UserInfoResponse;
 import com.wubangzhu.presentation.activity.MainActivity;
 import com.wubangzhu.presentation.widgets.GlideImageLoader;
+import com.wubangzhu.util.ShareData;
 import com.wubangzhu.util.ShareKeys;
 import com.youth.banner.Banner;
+
+import org.json.JSONException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
 
 public class MainFragment extends BaseFragment {
 
@@ -40,9 +49,27 @@ public class MainFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, rootView);
+        initData();
         initView();
+
         return rootView;
     }
+
+    private void initData() {
+        new LoginClient().postFindUser(ShareData.getShareStringData(ShareKeys.Login_UKEY),
+                ShareData.getShareIntData(ShareKeys.Login_UserId), new Callback2<UserInfoResponse>() {
+                    @Override
+                    public void onFailure(RetrofitError retrofitError) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(UserInfoResponse response, Response response2) throws InterruptedException, JSONException {
+
+                    }
+                });
+    }
+
     void initView(){
         banner.setImageLoader(new GlideImageLoader());
         banner.setImages(ShareKeys.getImages());

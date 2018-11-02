@@ -1,102 +1,62 @@
 package com.wubangzhu.domain.http.response.login;
 
-public class UserInfoResponse {
+public class UserInfoResponse extends BaseResponse{
+
 
     /**
-     * member : {"id":"100000002005","username":"zyxhy002","password":"","email":"1234@qq.com","mobilePhone":"18821875645","homePhone":"","idcard":"110105197303227893","idType":1,"pname":"钟南山","sex":1,"birthday":null,"enabled":1,"copd":1,"age":30,"memberType":0,"nickname":"钟经理","height":"175","weight":"93.8","intro":"","company":"中原","remark":"测试","doctorStatus":0,"memberOrgan":null,"doctorDeatil":null,"doctorOrganization":null,"displayName":"钟经理"}
-     * status : 1
+     * code : 0
+     * message : 请求成功
+     * user : {"id":13,"phonenumber":"13722852917","password":"ffd0dac854eecfb5ce080c5ce722125b","name":"13722852917","address":null,"state":0,"coin":0,"istg":0,"tgname":null}
      */
 
-    private MemberBean member;
-    private int status;
+    private UserBean user;
 
-    public MemberBean getMember() {
-        return member;
+
+    public UserBean getUser() {
+        return user;
     }
 
-    public void setMember(MemberBean member) {
-        this.member = member;
+    public void setUser(UserBean user) {
+        this.user = user;
     }
 
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
-    }
-
-    public static class MemberBean {
+    public static class UserBean {
         /**
-         * id : 100000002005
-         * username : zyxhy002
-         * password :
-         * email : 1234@qq.com
-         * mobilePhone : 18821875645
-         * homePhone :
-         * idcard : 110105197303227893
-         * idType : 1
-         * pname : 钟南山
-         * sex : 1
-         * birthday : null
-         * enabled : 1
-         * copd : 1
-         * age : 30
-         * memberType : 0
-         * nickname : 钟经理
-         * height : 175
-         * weight : 93.8
-         * intro :
-         * company : 中原
-         * remark : 测试
-         * doctorStatus : 0
-         * memberOrgan : null
-         * doctorDeatil : null
-         * doctorOrganization : null
-         * displayName : 钟经理
+         * id : 13
+         * phonenumber : 13722852917
+         * password : ffd0dac854eecfb5ce080c5ce722125b
+         * name : 13722852917
+         * address : null
+         * state : 0
+         * coin : 0
+         * istg : 0
+         * tgname : null
          */
 
-        private String id;
-        private String username;
+        private int id;
+        private String phonenumber;
         private String password;
-        private String email;
-        private String mobilePhone;
-        private String homePhone;
-        private String idcard;
-        private int idType;
-        private String pname;
-        private int sex;
-        private Object birthday;
-        private int enabled;
-        private int copd;
-        private int age;
-        private int memberType;
-        private String nickname;
-        private String height;
-        private String weight;
-        private String intro;
-        private String company;
-        private String remark;
-        private int doctorStatus;
-        private Object memberOrgan;
-        private Object doctorDeatil;
-        private Object doctorOrganization;
-        private String displayName;
+        private String name;
+        private Object address;
+        private int state;
+        private int coin;
+        private int istg;
+        private Object tgname;
 
-        public String getId() {
+        public int getId() {
             return id;
         }
 
-        public void setId(String id) {
+        public void setId(int id) {
             this.id = id;
         }
 
-        public String getUsername() {
-            return username;
+        public String getPhonenumber() {
+            return phonenumber;
         }
 
-        public void setUsername(String username) {
-            this.username = username;
+        public void setPhonenumber(String phonenumber) {
+            this.phonenumber = phonenumber;
         }
 
         public String getPassword() {
@@ -107,188 +67,52 @@ public class UserInfoResponse {
             this.password = password;
         }
 
-        public String getEmail() {
-            return email;
+        public String getName() {
+            return name;
         }
 
-        public void setEmail(String email) {
-            this.email = email;
+        public void setName(String name) {
+            this.name = name;
         }
 
-        public String getMobilePhone() {
-            return mobilePhone;
+        public Object getAddress() {
+            return address;
         }
 
-        public void setMobilePhone(String mobilePhone) {
-            this.mobilePhone = mobilePhone;
+        public void setAddress(Object address) {
+            this.address = address;
         }
 
-        public String getHomePhone() {
-            return homePhone;
+        public int getState() {
+            return state;
         }
 
-        public void setHomePhone(String homePhone) {
-            this.homePhone = homePhone;
+        public void setState(int state) {
+            this.state = state;
         }
 
-        public String getIdcard() {
-            return idcard;
+        public int getCoin() {
+            return coin;
         }
 
-        public void setIdcard(String idcard) {
-            this.idcard = idcard;
+        public void setCoin(int coin) {
+            this.coin = coin;
         }
 
-        public int getIdType() {
-            return idType;
+        public int getIstg() {
+            return istg;
         }
 
-        public void setIdType(int idType) {
-            this.idType = idType;
+        public void setIstg(int istg) {
+            this.istg = istg;
         }
 
-        public String getPname() {
-            return pname;
+        public Object getTgname() {
+            return tgname;
         }
 
-        public void setPname(String pname) {
-            this.pname = pname;
-        }
-
-        public int getSex() {
-            return sex;
-        }
-
-        public void setSex(int sex) {
-            this.sex = sex;
-        }
-
-        public Object getBirthday() {
-            return birthday;
-        }
-
-        public void setBirthday(Object birthday) {
-            this.birthday = birthday;
-        }
-
-        public int getEnabled() {
-            return enabled;
-        }
-
-        public void setEnabled(int enabled) {
-            this.enabled = enabled;
-        }
-
-        public int getCopd() {
-            return copd;
-        }
-
-        public void setCopd(int copd) {
-            this.copd = copd;
-        }
-
-        public int getAge() {
-            return age;
-        }
-
-        public void setAge(int age) {
-            this.age = age;
-        }
-
-        public int getMemberType() {
-            return memberType;
-        }
-
-        public void setMemberType(int memberType) {
-            this.memberType = memberType;
-        }
-
-        public String getNickname() {
-            return nickname;
-        }
-
-        public void setNickname(String nickname) {
-            this.nickname = nickname;
-        }
-
-        public String getHeight() {
-            return height;
-        }
-
-        public void setHeight(String height) {
-            this.height = height;
-        }
-
-        public String getWeight() {
-            return weight;
-        }
-
-        public void setWeight(String weight) {
-            this.weight = weight;
-        }
-
-        public String getIntro() {
-            return intro;
-        }
-
-        public void setIntro(String intro) {
-            this.intro = intro;
-        }
-
-        public String getCompany() {
-            return company;
-        }
-
-        public void setCompany(String company) {
-            this.company = company;
-        }
-
-        public String getRemark() {
-            return remark;
-        }
-
-        public void setRemark(String remark) {
-            this.remark = remark;
-        }
-
-        public int getDoctorStatus() {
-            return doctorStatus;
-        }
-
-        public void setDoctorStatus(int doctorStatus) {
-            this.doctorStatus = doctorStatus;
-        }
-
-        public Object getMemberOrgan() {
-            return memberOrgan;
-        }
-
-        public void setMemberOrgan(Object memberOrgan) {
-            this.memberOrgan = memberOrgan;
-        }
-
-        public Object getDoctorDeatil() {
-            return doctorDeatil;
-        }
-
-        public void setDoctorDeatil(Object doctorDeatil) {
-            this.doctorDeatil = doctorDeatil;
-        }
-
-        public Object getDoctorOrganization() {
-            return doctorOrganization;
-        }
-
-        public void setDoctorOrganization(Object doctorOrganization) {
-            this.doctorOrganization = doctorOrganization;
-        }
-
-        public String getDisplayName() {
-            return displayName;
-        }
-
-        public void setDisplayName(String displayName) {
-            this.displayName = displayName;
+        public void setTgname(Object tgname) {
+            this.tgname = tgname;
         }
     }
 }

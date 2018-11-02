@@ -4,6 +4,8 @@ package com.wubangzhu.domain.http;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.LogUtils;
+import com.blankj.utilcode.util.ToastUtils;
+import com.wubangzhu.domain.http.response.login.BaseResponse;
 import com.wubangzhu.util.ShareData;
 
 import org.json.JSONException;
@@ -33,7 +35,6 @@ public abstract class Callback2<T> implements Callback<T> {
                     .progress(true, 0)
                     .show();
         }catch (Exception e){
-            LogUtils.e(e.getMessage());
         }
 
         callbacks.add(this);
@@ -83,6 +84,7 @@ public abstract class Callback2<T> implements Callback<T> {
         try {
             try {
                 onSuccess(response, response2);
+                ToastUtils.showShort(((BaseResponse)response).getMessage());
             } catch (JSONException e) {
                 e.printStackTrace();
             }
