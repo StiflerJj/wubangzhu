@@ -34,7 +34,7 @@
         <!-- 这个属性是去掉button 默认样式-->
         <item name="android:button">@null</item>
 
-        <item name="android:gravity">center_vertical</item>
+        <item name="android:gravity">center</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
@@ -63,5 +63,33 @@
     <style name="Theme.Light.NoTitle.NoShadow.Dialog" parent="Theme.Light.NoTitle.Dialog">
         <item name="android:backgroundDimEnabled">false</item>
     </style>
-
+    <style name="BigText" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">23sp</item>
+        <item name="android:text">用户XXXXXXXXX</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="MiddleText" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:text">未使用A卷XXXXXXXXX张</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="SmallText" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:text">昨日收益XXXXXXXXX元</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+    <style name="InsideBtn" >
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:text">button</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/black</item>
+    </style>
 </resources>

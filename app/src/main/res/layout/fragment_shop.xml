@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <com.youth.banner.Banner
+        android:id="@+id/banber_shop"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        ></com.youth.banner.Banner>
+    <com.kd.easybarrage.BarrageView
+        android:id="@+id/barrageView"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_above="@+id/send"
+        app:allow_repeat="true"
+        app:border_color="@color/colorAccent"
+        app:line_height="20dp"
+        app:max_text_size="12"
+        app:min_text_size="12"
+        app:random_color="true"
+        app:size="200"/>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/shop_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+</LinearLayout>

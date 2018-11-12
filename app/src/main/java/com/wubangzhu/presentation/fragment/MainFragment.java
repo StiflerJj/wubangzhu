@@ -16,7 +16,10 @@ import com.kd.easybarrage.BarrageView;
 import com.wubangzhu.R;
 import com.wubangzhu.domain.http.Callback2;
 import com.wubangzhu.domain.http.api.login.LoginClient;
+import com.wubangzhu.domain.http.api.login.YLClient;
+import com.wubangzhu.domain.http.response.login.AllGoods;
 import com.wubangzhu.domain.http.response.login.BaseResponse;
+import com.wubangzhu.domain.http.response.login.StartShopResponse;
 import com.wubangzhu.domain.http.response.login.UserInfoResponse;
 import com.wubangzhu.presentation.activity.MainActivity;
 import com.wubangzhu.presentation.widgets.GlideImageLoader;
@@ -49,8 +52,8 @@ public class MainFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
         ButterKnife.bind(this, rootView);
-        initData();
         initView();
+        initData();
 
         return rootView;
     }
@@ -80,7 +83,45 @@ public class MainFragment extends BaseFragment {
     void onclick(View v){
         if(v == gotoMall){
             ToastUtils.showShort("购物区");
-            updateFragment(new AllGoodsFragment(),1);
+            new YLClient().postfindAll(ShareData.getShareStringData(ShareKeys.Login_UKEY),
+                    1, new Callback2<AllGoods>() {
+                        @Override
+                        public void onFailure(RetrofitError retrofitError) {
+
+                        }
+
+                        @Override
+                        public void onSuccess(AllGoods response, Response response2) throws InterruptedException, JSONException {
+
+                            if(response!=null && response.getShopmodels().size()>0){
+                                new YLClient().poststartShop(ShareData.getShareStringData(ShareKeys.Login_UKEY),
+                                        ShareData.getShareIntData(ShareKeys.Login_UserId),
+                                        response.getShopmodels().get(0).getId(), new Callback2<StartShopResponse>() {
+                                            @Override
+                                            public void onFailure(RetrofitError retrofitError) {
+
+                                            }
+
+                                            @Override
+                                            public void onSuccess(StartShopResponse response, Response response2) throws InterruptedException, JSONException {
+
+                                                new YLClient().postguessShop(ShareData.getShareStringData(ShareKeys.Login_UKEY),
+                                                        response.getShmhistory().getId(), response.getShmhistory().getLuckynumber() + "", new Callback2<BaseResponse>() {
+                                                            @Override
+                                                            public void onFailure(RetrofitError retrofitError) {
+
+                                                            }
+
+                                                            @Override
+                                                            public void onSuccess(BaseResponse response, Response response2) throws InterruptedException, JSONException {
+
+                                                            }
+                                                        });
+                                            }
+                                        });
+                            }
+                        }
+                    });
         }else{
             ToastUtils.showShort("娱乐区");
         }

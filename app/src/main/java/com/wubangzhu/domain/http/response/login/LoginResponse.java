@@ -1,6 +1,6 @@
 package com.wubangzhu.domain.http.response.login;
 
-public class LoginResponse {
+public class LoginResponse extends BaseResponse{
 
 
     /**
@@ -10,26 +10,9 @@ public class LoginResponse {
      * uid : 13
      */
 
-    private int code;
-    private String message;
     private String ukey;
     private int uid;
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public String getUkey() {
         return ukey;

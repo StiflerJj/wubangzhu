@@ -21,4 +21,6 @@ public interface LoginApi {
                     Callback2<BaseResponse> callback2);
     @POST("/user/findUser")
     void postFindUser(@Query("ukey") String ukey,@Query("id") int id, Callback2<UserInfoResponse> callback2);
+    @POST("/user/goToTg")
+    void postgoToTg(@Query("ukey") String ukey,@Query("id") int id, Callback2<BaseResponse> callback2);
 }

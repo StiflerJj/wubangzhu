@@ -32,6 +32,9 @@ public class LoginClient {
     public void postFindUser(String ukey,int id, Callback2<UserInfoResponse> responseCallback2){
         loginApi.postFindUser(ukey,id,responseCallback2);
     }
+    public void postgoToTg(String ukey,int id, Callback2<BaseResponse> responseCallback2){
+        loginApi.postgoToTg(ukey,id,responseCallback2);
+    }
 
 
 }

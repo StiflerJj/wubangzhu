@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+     android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/dp_10">
+    <ImageView
+        android:id="@+id/info_avatar"
+        android:src="@mipmap/ic_launcher"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/info_phone"
+        android:layout_toRightOf="@id/info_avatar"
+        android:layout_marginLeft="@dimen/dp_10"
+        style="@style/BigText"/>
+    <TextView
+        android:id="@+id/info_tgid"
+        android:layout_toRightOf="@id/info_avatar"
+        android:layout_below="@id/info_phone"
+        android:layout_margin="@dimen/dp_10"
+        style="@style/MiddleText"/>
+    <Button
+        android:id="@+id/info_tgbtn"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/info_phone"
+        android:text="@string/userinfo_tgbtnstr"
+        style="@style/InsideBtn"/>
+    <LinearLayout
+        android:id="@+id/info_biao"
+        android:layout_below="@id/info_tgbtn"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_height="120dp">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/info_waitbiao"
+            android:layout_weight="1"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ></android.support.v7.widget.RecyclerView>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/info_zhongbiao"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            ></android.support.v7.widget.RecyclerView>
+
+    </LinearLayout>
+<TextView
+    android:id="@+id/info_ticketA"
+    android:layout_below="@id/info_biao"
+    style="@style/MiddleText" />
+    <TextView
+        android:id="@+id/info_ticketB"
+        android:layout_below="@id/info_ticketA"
+        android:layout_marginTop="@dimen/dp_10"
+        style="@style/MiddleText" />
+    <Button
+        android:id="@+id/info_buytiket"
+        style="@style/InsideBtn"
+        android:layout_below="@id/info_ticketA"
+        android:layout_alignParentRight="true"
+        android:text="@string/userinfo_buystr"
+         />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/info_buyhistorylist"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/info_buytiket"></android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/info_totalincome"
+        style="@style/MiddleText"
+        android:layout_below="@id/info_buyhistorylist"
+        />
+    <TextView
+        android:id="@+id/info_dayincome"
+        style="@style/SmallText"
+        android:layout_below="@id/info_totalincome"
+        />
+    <TextView
+        android:id="@+id/info_totalpeople"
+        style="@style/MiddleText"
+        android:layout_below="@id/info_dayincome"
+        />
+    <TextView
+        android:id="@+id/info_daypeople"
+        style="@style/SmallText"
+        android:layout_below="@id/info_totalpeople"
+        />
+
+</RelativeLayout>
