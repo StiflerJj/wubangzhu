@@ -59,18 +59,18 @@ public class MainFragment extends BaseFragment {
     }
 
     private void initData() {
-        new LoginClient().postFindUser(ShareData.getShareStringData(ShareKeys.Login_UKEY),
-                ShareData.getShareIntData(ShareKeys.Login_UserId), new Callback2<UserInfoResponse>() {
-                    @Override
-                    public void onFailure(RetrofitError retrofitError) {
-
-                    }
-
-                    @Override
-                    public void onSuccess(UserInfoResponse response, Response response2) throws InterruptedException, JSONException {
-
-                    }
-                });
+//        new LoginClient().postFindUser(ShareData.getShareStringData(ShareKeys.Login_UKEY),
+//                ShareData.getShareIntData(ShareKeys.Login_UserId), new Callback2<UserInfoResponse>() {
+//                    @Override
+//                    public void onFailure(RetrofitError retrofitError) {
+//
+//                    }
+//
+//                    @Override
+//                    public void onSuccess(UserInfoResponse response, Response response2) throws InterruptedException, JSONException {
+//
+//                    }
+//                });
     }
 
     void initView(){
