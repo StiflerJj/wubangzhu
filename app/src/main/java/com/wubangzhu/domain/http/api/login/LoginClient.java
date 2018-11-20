@@ -3,6 +3,7 @@ package com.wubangzhu.domain.http.api.login;
 
 import com.wubangzhu.BuildConfig;
 import com.wubangzhu.domain.http.Callback2;
+import com.wubangzhu.domain.http.Callback3;
 import com.wubangzhu.domain.http.URL;
 import com.wubangzhu.domain.http.request.login.LoginRequest;
 import com.wubangzhu.domain.http.response.login.BaseResponse;
@@ -29,7 +30,7 @@ public class LoginClient {
     public void postRegist(String phonenumber,String code,String password,String tgname, Callback2<BaseResponse> responseCallback2){
         loginApi.postRegist(phonenumber,code,password,tgname,responseCallback2);
     }
-    public void postFindUser(String ukey,int id, Callback2<UserInfoResponse> responseCallback2){
+    public void postFindUser(String ukey,int id, Callback3<UserInfoResponse> responseCallback2){
         loginApi.postFindUser(ukey,id,responseCallback2);
     }
     public void postgoToTg(String ukey,int id, Callback2<BaseResponse> responseCallback2){

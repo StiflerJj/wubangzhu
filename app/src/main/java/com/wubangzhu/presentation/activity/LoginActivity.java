@@ -98,11 +98,11 @@ public class LoginActivity extends AppCompatActivity {
 
     }
     @OnClick(R.id.login_btn) void setLogin(){
-        ActivityUtils.startActivity(MainActivity.class);//TODO goto main
+//        ActivityUtils.startActivity(MainActivity.class);//TODO goto main
         if(CommonUtil.isBlank(mUserName.getText().toString()) || CommonUtil.isBlank(mPassword.getText().toString())){
             CommonUtil.showToast(LoginActivity.this,R.string.rewrite);
         }
-        new LoginClient().postLogin("13722852917", "123456", new Callback2<LoginResponse>() {
+        new LoginClient().postLogin(mUserName.getText().toString(), mPassword.getText().toString(), new Callback2<LoginResponse>() {
             @Override
             public void onFailure(RetrofitError retrofitError) {
 

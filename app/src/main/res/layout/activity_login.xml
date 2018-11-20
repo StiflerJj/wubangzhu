@@ -20,7 +20,7 @@
         android:layout_marginTop="11dp"
         android:ems="10"
         android:inputType="text"
-        android:text="zyxhy002"
+        android:text="13722852917"
         android:drawableLeft="@drawable/login_img_user"
         android:hint="@string/username"
         android:textColorHint="@color/white"

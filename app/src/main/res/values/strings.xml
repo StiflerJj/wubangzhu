@@ -6,7 +6,10 @@
     <string name="no_data">暂无数据</string>
     <string name="network_err">网络异常，请检查网络</string>
     //login
-    <string name="rewrite">请正确输入用户名或密码！</string>
+    <string name="rewrite">请正确输入手机号或密码</string>
+    <string name="rewrite_code">请正确输入验证码</string>
+    <string name="rewrite_notsame">两次密码不同，请重新输入</string>
+    <string name="rewrite_tgid">请正确输入邀请人Id</string>
     <string name="username">用户名</string>
     <string name="phone">手机号</string>
     <string name="pwd">密码</string>

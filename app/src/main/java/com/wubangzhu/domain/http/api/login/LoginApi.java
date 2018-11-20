@@ -1,6 +1,7 @@
 package com.wubangzhu.domain.http.api.login;
 
 import com.wubangzhu.domain.http.Callback2;
+import com.wubangzhu.domain.http.Callback3;
 import com.wubangzhu.domain.http.response.login.BaseResponse;
 import com.wubangzhu.domain.http.response.login.LoginResponse;
 import com.wubangzhu.domain.http.response.login.UserInfoResponse;
@@ -20,7 +21,7 @@ public interface LoginApi {
                     @Query("password") String password,@Query("tgname") String tgname,
                     Callback2<BaseResponse> callback2);
     @POST("/user/findUser")
-    void postFindUser(@Query("ukey") String ukey,@Query("id") int id, Callback2<UserInfoResponse> callback2);
+    void postFindUser(@Query("ukey") String ukey,@Query("id") int id, Callback3<UserInfoResponse> callback2);
     @POST("/user/goToTg")
     void postgoToTg(@Query("ukey") String ukey,@Query("id") int id, Callback2<BaseResponse> callback2);
 }

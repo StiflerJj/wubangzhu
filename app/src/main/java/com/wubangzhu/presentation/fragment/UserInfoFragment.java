@@ -11,17 +11,22 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.StringUtils;
 import com.wubangzhu.R;
 import com.wubangzhu.domain.http.Callback2;
+import com.wubangzhu.domain.http.Callback3;
 import com.wubangzhu.domain.http.api.login.LoginClient;
+import com.wubangzhu.domain.http.response.login.BaseResponse;
 import com.wubangzhu.domain.http.response.login.UserInfoResponse;
 import com.wubangzhu.util.ShareData;
 import com.wubangzhu.util.ShareKeys;
+import com.zhou.zhoulib.util.Const;
 
 import org.json.JSONException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
@@ -56,7 +61,6 @@ public class UserInfoFragment extends BaseFragment {
     RecyclerView mBuyHistory;
 
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -74,7 +78,7 @@ public class UserInfoFragment extends BaseFragment {
 
     private void initData() {
         new LoginClient().postFindUser(ShareData.getShareStringData(ShareKeys.Login_UKEY),
-                ShareData.getShareIntData(ShareKeys.Login_UserId), new Callback2<UserInfoResponse>() {
+                ShareData.getShareIntData(ShareKeys.Login_UserId), new Callback3<UserInfoResponse>() {
                     @Override
                     public void onFailure(RetrofitError retrofitError) {
 
@@ -83,8 +87,46 @@ public class UserInfoFragment extends BaseFragment {
                     @Override
                     public void onSuccess(UserInfoResponse response, Response response2) throws InterruptedException, JSONException {
 
+                        if (response != null && response.getCode() == 0) {
+                            UserInfoResponse.UserBean userBean = response.getUser();
+                            if (userBean != null) {
+                                mPhone.setText(userBean.getName());
+                                if (!StringUtils.isEmpty(userBean.getTgname()+"")) {
+                                    mTgbtn.setVisibility(View.GONE);
+                                    mTgid.setText(response.getUser().getTgname() + "");
+                                }
+                            }
+
+                        }
+
+
                     }
                 });
+    }
+
+    @OnClick({R.id.info_tgbtn, R.id.info_buytiket})
+    void btnClick(View v) {
+        if (v == mTgbtn) {
+            new LoginClient().postgoToTg(ShareData.getShareStringData(ShareKeys.Login_UKEY), ShareData.getShareIntData(ShareKeys.Login_UserId),
+                    new Callback2<BaseResponse>() {
+                        @Override
+                        public void onFailure(RetrofitError retrofitError) {
+
+                        }
+
+                        @Override
+                        public void onSuccess(BaseResponse response, Response response2) throws InterruptedException, JSONException {
+
+                            if (response != null && response.getCode() == 0) {
+                                mTgid.setText(response.getMessage());
+                                mTgbtn.setVisibility(View.GONE);
+                            }
+                        }
+                    });
+
+        } else {
+
+        }
     }
 
 }

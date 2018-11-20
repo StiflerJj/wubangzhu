@@ -22,6 +22,7 @@
         app:random_color="true"
         app:size="200"/>
     <RadioGroup
+        android:id="@+id/game_group"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="50dp"
