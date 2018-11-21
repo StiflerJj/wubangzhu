@@ -3,6 +3,7 @@ package com.wubangzhu.presentation.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,12 +12,15 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.blankj.utilcode.util.LogUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.kd.easybarrage.Barrage;
 import com.kd.easybarrage.BarrageView;
 import com.wubangzhu.R;
 import com.wubangzhu.domain.http.Callback2;
 import com.wubangzhu.domain.http.api.login.YLClient;
 import com.wubangzhu.domain.http.response.login.AllGoods;
+import com.wubangzhu.domain.http.response.login.StartShopResponse;
+import com.wubangzhu.presentation.adapter.FreeAdapter;
 import com.wubangzhu.presentation.widgets.GlideImageLoader;
 import com.wubangzhu.util.ShareData;
 import com.wubangzhu.util.ShareKeys;
@@ -50,6 +54,8 @@ public class GameFragment extends BaseFragment {
     @BindView(R.id.game_list)
     RecyclerView mGameList;
 
+    FreeAdapter freeAdapter;
+
     int type;
     List<AllGoods.ShopmodelsBean> shopmodelBeanList;
 
@@ -77,6 +83,28 @@ public class GameFragment extends BaseFragment {
 
                 if(response!=null && response.getCode()==0){
                     shopmodelBeanList = response.getShopmodels();
+                    LogUtils.e("shopmodelBeanList "+shopmodelBeanList.get(0));
+                    freeAdapter = new FreeAdapter(shopmodelBeanList);
+                    freeAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+                        @Override
+                        public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                            new YLClient().poststartShop(ShareData.getShareStringData(ShareKeys.Login_UKEY), ShareData.getShareIntData(ShareKeys.Login_UserId),
+                                    shopmodelBeanList.get(0).getId(), new Callback2<StartShopResponse>() {
+                                        @Override
+                                        public void onFailure(RetrofitError retrofitError) {
+
+                                        }
+
+                                        @Override
+                                        public void onSuccess(StartShopResponse response, Response response2) throws InterruptedException, JSONException {
+
+                                        }
+                                    });
+
+                        }
+                    });
+                    mGameList.setAdapter(freeAdapter);
+
                 }
             }
         });
@@ -89,6 +117,7 @@ public class GameFragment extends BaseFragment {
         banner.setImages(ShareKeys.getImages());
         banner.start();
         barrageView.addBarrage(new Barrage("恭喜XXX猜中iPhone XS Max！"));
+        mGameList.setLayoutManager(new LinearLayoutManager(getContext()));
 //        game_group.setOnCheckedChangeListener(onCheckedChanged);
     }
 //    private RadioGroup.OnCheckedChangeListener onCheckedChanged = new RadioGroup.OnCheckedChangeListener() {

@@ -74,5 +74,6 @@
     <!--userinfo-->
     <string name="userinfo_tgbtnstr">推广员申请</string>
     <string name="userinfo_buystr">购买</string>
-
+    <!--gameinfo-->
+    <string name="gameinfo_biao">参加竞猜</string>
 </resources>
