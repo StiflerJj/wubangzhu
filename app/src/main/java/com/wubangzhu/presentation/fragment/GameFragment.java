@@ -89,7 +89,7 @@ public class GameFragment extends BaseFragment {
                         @Override
                         public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
                             new YLClient().poststartShop(ShareData.getShareStringData(ShareKeys.Login_UKEY), ShareData.getShareIntData(ShareKeys.Login_UserId),
-                                    shopmodelBeanList.get(0).getId(), new Callback2<StartShopResponse>() {
+                                    shopmodelBeanList.get(position).getId(), new Callback2<StartShopResponse>() {
                                         @Override
                                         public void onFailure(RetrofitError retrofitError) {
 
@@ -98,6 +98,10 @@ public class GameFragment extends BaseFragment {
                                         @Override
                                         public void onSuccess(StartShopResponse response, Response response2) throws InterruptedException, JSONException {
 
+                                            if(response!=null && response.getCode()==0){
+
+
+                                            }
                                         }
                                     });
 
