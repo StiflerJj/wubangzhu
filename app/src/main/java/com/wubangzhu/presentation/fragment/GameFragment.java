@@ -98,6 +98,10 @@ public class GameFragment extends BaseFragment {
                                         @Override
                                         public void onSuccess(StartShopResponse response, Response response2) throws InterruptedException, JSONException {
 
+                                            if(response!=null && response.getCode()==0){
+
+
+                                            }
                                         }
                                     });
 
