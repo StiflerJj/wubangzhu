@@ -10,8 +10,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.blankj.utilcode.util.StringUtils;
+import com.tsy.sdk.pay.alipay.Alipay;
 import com.wubangzhu.R;
 import com.wubangzhu.domain.http.Callback2;
 import com.wubangzhu.domain.http.Callback3;
@@ -126,7 +128,53 @@ public class UserInfoFragment extends BaseFragment {
 
         } else {
 
+
         }
+    }
+
+    /**
+     * 支付宝支付
+     * @param pay_param 支付服务生成的支付参数
+     */
+    private void doAlipay(String pay_param) {
+        new Alipay(getContext(), pay_param, new Alipay.AlipayResultCallBack() {
+            @Override
+            public void onSuccess() {
+                Toast.makeText(getContext(), "支付成功", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onDealing() {
+                Toast.makeText(getContext(), "支付处理中...", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void onError(int error_code) {
+                switch (error_code) {
+                    case Alipay.ERROR_RESULT:
+                        Toast.makeText(getContext(), "支付失败:支付结果解析错误", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case Alipay.ERROR_NETWORK:
+                        Toast.makeText(getContext(), "支付失败:网络连接错误", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case Alipay.ERROR_PAY:
+                        Toast.makeText(getContext(), "支付错误:支付码支付失败", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    default:
+                        Toast.makeText(getContext(), "支付错误", Toast.LENGTH_SHORT).show();
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onCancel() {
+                Toast.makeText(getContext(), "支付取消", Toast.LENGTH_SHORT).show();
+            }
+        }).doPay();
     }
 
 }
