@@ -10,6 +10,8 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         javaCompileOptions { annotationProcessorOptions { includeCompileClasspath = true } }
+        multiDexEnabled true
+
     }
     buildTypes {
         release {
@@ -42,7 +44,7 @@ dependencies {
     implementation 'com.kd.easybarrage:library:0.0.1'
     //支付
     implementation (name: 'alipaySdk-15.5.7-20181023110917', ext: 'aar')
-    implementation 'com.tsy:pay:1.0.0'
+//    implementation 'com.tsy:pay:1.0.0'
 
 
 

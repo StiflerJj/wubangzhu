@@ -1,9 +1,16 @@
 package com.wubangzhu.presentation.fragment;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,8 +19,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alipay.sdk.app.PayTask;
 import com.blankj.utilcode.util.StringUtils;
-import com.tsy.sdk.pay.alipay.Alipay;
+import com.blankj.utilcode.util.ToastUtils;
 import com.wubangzhu.R;
 import com.wubangzhu.domain.http.Callback2;
 import com.wubangzhu.domain.http.Callback3;
@@ -26,6 +34,8 @@ import com.zhou.zhoulib.util.Const;
 
 import org.json.JSONException;
 
+import java.util.Map;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -33,6 +43,11 @@ import retrofit.RetrofitError;
 import retrofit.client.Response;
 
 public class UserInfoFragment extends BaseFragment {
+    /**
+     * 获取权限使用的 RequestCode
+     */
+    private static final int PERMISSIONS_REQUEST_CODE = 1002;
+
     @BindView(R.id.info_avatar)
     ImageView mAvatar;
     @BindView(R.id.info_phone)
@@ -75,7 +90,23 @@ public class UserInfoFragment extends BaseFragment {
     }
 
     private void initView() {
+        if (Build.VERSION.SDK_INT >= 23) {
+            // Here, thisActivity is the current activity
+            if (ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.READ_PHONE_STATE)
+                    != PackageManager.PERMISSION_GRANTED
+                    || ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                    != PackageManager.PERMISSION_GRANTED) {
 
+                ActivityCompat.requestPermissions(getActivity(),
+                        new String[]{
+                                Manifest.permission.READ_PHONE_STATE,
+                                Manifest.permission.WRITE_EXTERNAL_STORAGE
+                        }, PERMISSIONS_REQUEST_CODE);
+
+            } else {
+                ToastUtils.showLong("支付宝 SDK 已有所需的权限");
+            }
+        }
     }
 
     private void initData() {
@@ -93,7 +124,7 @@ public class UserInfoFragment extends BaseFragment {
                             UserInfoResponse.UserBean userBean = response.getUser();
                             if (userBean != null) {
                                 mPhone.setText(userBean.getName());
-                                if (!StringUtils.isEmpty(userBean.getTgname()+"")) {
+                                if (!StringUtils.isEmpty(userBean.getTgname() + "")) {
                                     mTgbtn.setVisibility(View.GONE);
                                     mTgid.setText(response.getUser().getTgname() + "");
                                 }
@@ -128,53 +159,56 @@ public class UserInfoFragment extends BaseFragment {
 
         } else {
 
+            Runnable payRunnable = new Runnable() {
+
+                @Override
+                public void run() {
+                    PayTask alipay = new PayTask(getActivity());
+                    Map<String, String> result = alipay.payV2("alipay_sdk=alipay-sdk-java-3.4.49.ALL&app_id=2018111862261364&biz_content=%7B%22body%22%3A%22%E6%88%91%E6%98%AF%E6%B5%8B%E8%AF%95%E6%95%B0%E6%8D%AE%22%2C%22out_trade_no%22%3A%22123%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22subject%22%3A%22App%E6%94%AF%E4%BB%98%E6%B5%8B%E8%AF%95Java%22%2C%22timeout_express%22%3A%2230m%22%2C%22total_amount%22%3A%220.01%22%7D&charset=UTF-8&format=json&method=alipay.trade.app.pay&notify_url=%E5%95%86%E6%88%B7%E5%A4%96%E7%BD%91%E5%8F%AF%E4%BB%A5%E8%AE%BF%E9%97%AE%E7%9A%84%E5%BC%82%E6%AD%A5%E5%9C%B0%E5%9D%80&sign=A29n99uwFYaUAiqbjmXArzq6p1wgjPnGZ03sEeb70bvHdO9KPv74kqKHC7jcCiZuE8KoxZ2NXmbVYIBrVHILsEkbRSYg5rl10jOoeliOt2AfWfzMqU23g8jY2t%2FCUgXEpy4Yy6%2BY6ju3i%2Fhi3md1YdojtiyyVDATHRGLZguuGalbGmwtGZHDth2subNPuio0H%2BsKiEfmOVSncVd37ln7AWE0PiUM4JyvIErZSWljqy5Rbjd1ZwG1wIaLLN6f9Bc4F1rkDPX%2FBnvDukYl3zBMW0TugnZKxLXV4O3MlFfeJ8%2FTj%2FpUovOy%2FY8iOJli3%2BXA9uHyKWH6qXVg0gLWw79z6w%3D%3D&sign_type=RSA2&timestamp=2018-11-27+22%3A24%3A52&version=1.0", true);
+                    Log.i("msp", result.toString());
+
+
+
+//                    Message msg = new Message();
+//                    msg.what = SDK_PAY_FLAG;
+//                    msg.obj = result;
+//                    mHandler.sendMessage(msg);
+                }
+            };
+
+            Thread payThread = new Thread(payRunnable);
+            payThread.start();
 
         }
     }
 
+
     /**
-     * 支付宝支付
-     * @param pay_param 支付服务生成的支付参数
+     * 权限获取回调
      */
-    private void doAlipay(String pay_param) {
-        new Alipay(getContext(), pay_param, new Alipay.AlipayResultCallBack() {
-            @Override
-            public void onSuccess() {
-                Toast.makeText(getContext(), "支付成功", Toast.LENGTH_SHORT).show();
-            }
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        switch (requestCode) {
+            case PERMISSIONS_REQUEST_CODE: {
 
-            @Override
-            public void onDealing() {
-                Toast.makeText(getContext(), "支付处理中...", Toast.LENGTH_SHORT).show();
-            }
-
-            @Override
-            public void onError(int error_code) {
-                switch (error_code) {
-                    case Alipay.ERROR_RESULT:
-                        Toast.makeText(getContext(), "支付失败:支付结果解析错误", Toast.LENGTH_SHORT).show();
-                        break;
-
-                    case Alipay.ERROR_NETWORK:
-                        Toast.makeText(getContext(), "支付失败:网络连接错误", Toast.LENGTH_SHORT).show();
-                        break;
-
-                    case Alipay.ERROR_PAY:
-                        Toast.makeText(getContext(), "支付错误:支付码支付失败", Toast.LENGTH_SHORT).show();
-                        break;
-
-                    default:
-                        Toast.makeText(getContext(), "支付错误", Toast.LENGTH_SHORT).show();
-                        break;
+                // 用户取消了权限弹窗
+                if (grantResults.length == 0) {
+                    ToastUtils.showLong("无法获取支付宝 SDK 所需的权限, 请到系统设置开启");
+                    return;
                 }
 
-            }
+                // 用户拒绝了某些权限
+                for (int x : grantResults) {
+                    if (x == PackageManager.PERMISSION_DENIED) {
+                        ToastUtils.showLong("无法获取支付宝 SDK 所需的权限, 请到系统设置开启");
+                        return;
+                    }
+                }
 
-            @Override
-            public void onCancel() {
-                Toast.makeText(getContext(), "支付取消", Toast.LENGTH_SHORT).show();
+                // 所需的权限均正常获取
+                ToastUtils.showLong("支付宝 SDK 所需的权限已经正常获取");
             }
-        }).doPay();
+        }
     }
 
 }
