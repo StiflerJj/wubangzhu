@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.afollestad.materialdialogs.MaterialDialog;
+import com.afollestad.materialdialogs.util.DialogUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.kd.easybarrage.Barrage;
@@ -19,8 +21,11 @@ import com.wubangzhu.R;
 import com.wubangzhu.domain.http.Callback2;
 import com.wubangzhu.domain.http.api.login.YLClient;
 import com.wubangzhu.domain.http.response.login.AllGoods;
+import com.wubangzhu.domain.http.response.login.AllPayGoods;
+import com.wubangzhu.domain.http.response.login.BaseResponse;
 import com.wubangzhu.domain.http.response.login.StartShopResponse;
 import com.wubangzhu.presentation.adapter.FreeAdapter;
+import com.wubangzhu.presentation.adapter.PayAdapter;
 import com.wubangzhu.presentation.widgets.GlideImageLoader;
 import com.wubangzhu.util.ShareData;
 import com.wubangzhu.util.ShareKeys;
@@ -55,8 +60,8 @@ public class GameFragment extends BaseFragment {
     RecyclerView mGameList;
 
     FreeAdapter freeAdapter;
+    PayAdapter payAdapter;
 
-    int type;
     List<AllGoods.ShopmodelsBean> shopmodelBeanList;
 
 
@@ -66,13 +71,27 @@ public class GameFragment extends BaseFragment {
         View rootView = inflater.inflate(R.layout.fragment_game, container, false);
         ButterKnife.bind(this, rootView);
         initView();
+        new YLClient().postfindAllPayArea(ShareData.getShareStringData(ShareKeys.Login_UKEY), new Callback2<AllPayGoods>() {
+            @Override
+            public void onFailure(RetrofitError retrofitError) {
+
+            }
+
+            @Override
+            public void onSuccess(AllPayGoods response, Response response2) throws InterruptedException, JSONException {
+
+            }
+        });
         initData(1);//1 FREE 2 PAY
 
         return rootView;
     }
 
     private void initData(int type) {
-        new YLClient().postfindAll(ShareData.getShareStringData(ShareKeys.Login_UKEY), type, new Callback2<AllGoods>() {
+        if(type==1){
+
+
+        new YLClient().postfindAll(ShareData.getShareStringData(ShareKeys.Login_UKEY), new Callback2<AllGoods>() {
             @Override
             public void onFailure(RetrofitError retrofitError) {
 
@@ -112,7 +131,30 @@ public class GameFragment extends BaseFragment {
                 }
             }
         });
+        }else{
+            new YLClient().postfindAllPayArea(ShareData.getShareStringData(ShareKeys.Login_UKEY), new Callback2<AllPayGoods>() {
+                @Override
+                public void onFailure(RetrofitError retrofitError) {
 
+                }
+
+                @Override
+                public void onSuccess(AllPayGoods response, Response response2) throws InterruptedException, JSONException {
+
+                    if(response!=null && response.getOurGuesses()!=null && response.getOurGuesses().size()>0){
+                        payAdapter = new PayAdapter(response.getOurGuesses());
+                        payAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+                            @Override
+                            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                                com.wubangzhu.util.DialogUtils.Companion.showCustomInputDialog(getContext());
+
+                            }
+                        });
+                        mGameList.setAdapter(payAdapter);
+                    }
+                }
+            });
+        }
     }
 
     private void initView() {

@@ -83,45 +83,45 @@ public class MainFragment extends BaseFragment {
     void onclick(View v){
         if(v == gotoMall){
             ToastUtils.showShort("购物区");
-            new YLClient().postfindAll(ShareData.getShareStringData(ShareKeys.Login_UKEY),
-                    1, new Callback2<AllGoods>() {
-                        @Override
-                        public void onFailure(RetrofitError retrofitError) {
-
-                        }
-
-                        @Override
-                        public void onSuccess(AllGoods response, Response response2) throws InterruptedException, JSONException {
-
-                            if(response!=null && response.getShopmodels().size()>0){
-                                new YLClient().poststartShop(ShareData.getShareStringData(ShareKeys.Login_UKEY),
-                                        ShareData.getShareIntData(ShareKeys.Login_UserId),
-                                        response.getShopmodels().get(0).getId(), new Callback2<StartShopResponse>() {
-                                            @Override
-                                            public void onFailure(RetrofitError retrofitError) {
-
-                                            }
-
-                                            @Override
-                                            public void onSuccess(StartShopResponse response, Response response2) throws InterruptedException, JSONException {
-
-                                                new YLClient().postguessShop(ShareData.getShareStringData(ShareKeys.Login_UKEY),
-                                                        response.getShmhistory().getId(), response.getShmhistory().getLuckynumber() + "", new Callback2<BaseResponse>() {
-                                                            @Override
-                                                            public void onFailure(RetrofitError retrofitError) {
-
-                                                            }
-
-                                                            @Override
-                                                            public void onSuccess(BaseResponse response, Response response2) throws InterruptedException, JSONException {
-
-                                                            }
-                                                        });
-                                            }
-                                        });
-                            }
-                        }
-                    });
+//            new YLClient().postfindAll(ShareData.getShareStringData(ShareKeys.Login_UKEY),
+//                    1, new Callback2<AllGoods>() {
+//                        @Override
+//                        public void onFailure(RetrofitError retrofitError) {
+//
+//                        }
+//
+//                        @Override
+//                        public void onSuccess(AllGoods response, Response response2) throws InterruptedException, JSONException {
+//
+//                            if(response!=null && response.getShopmodels().size()>0){
+//                                new YLClient().poststartShop(ShareData.getShareStringData(ShareKeys.Login_UKEY),
+//                                        ShareData.getShareIntData(ShareKeys.Login_UserId),
+//                                        response.getShopmodels().get(0).getId(), new Callback2<StartShopResponse>() {
+//                                            @Override
+//                                            public void onFailure(RetrofitError retrofitError) {
+//
+//                                            }
+//
+//                                            @Override
+//                                            public void onSuccess(StartShopResponse response, Response response2) throws InterruptedException, JSONException {
+//
+//                                                new YLClient().postguessShop(ShareData.getShareStringData(ShareKeys.Login_UKEY),
+//                                                        response.getShmhistory().getId(), response.getShmhistory().getLuckynumber() + "", new Callback2<BaseResponse>() {
+//                                                            @Override
+//                                                            public void onFailure(RetrofitError retrofitError) {
+//
+//                                                            }
+//
+//                                                            @Override
+//                                                            public void onSuccess(BaseResponse response, Response response2) throws InterruptedException, JSONException {
+//
+//                                                            }
+//                                                        });
+//                                            }
+//                                        });
+//                            }
+//                        }
+//                    });
         }else{
             ToastUtils.showShort("娱乐区");
         }

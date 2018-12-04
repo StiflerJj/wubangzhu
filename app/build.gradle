@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
 
 android {
     compileSdkVersion 28
@@ -44,8 +45,12 @@ dependencies {
     implementation 'com.kd.easybarrage:library:0.0.1'
     //支付
     implementation (name: 'alipaySdk-15.5.7-20181023110917', ext: 'aar')
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
 //    implementation 'com.tsy:pay:1.0.0'
 
 
 
+}
+repositories {
+    mavenCentral()
 }
