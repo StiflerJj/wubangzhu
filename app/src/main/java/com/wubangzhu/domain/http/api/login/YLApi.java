@@ -19,7 +19,7 @@ public interface YLApi {
 
     @POST("/yl/findAllOurguess")//所有收费区
     void postguessShop(@Query("ukey") String ukey, Callback2<AllPayGoods> callback2);
-    @POST("/yl/bmourguess")//报名收费区
+    @POST("/yl/bmourguess")//报名收费区 0报名成功 999报名人数已满 998 账户余额不足请充值 其他稍后重试
     void postbaomingPay(@Query("ukey") String ukey,@Query("userid") int userid,@Query("ourguessid") int ourguessid,
                         @Query("bmGuessnumber") int bmGuessnumber,Callback2<BaseResponse> callback2);
     @POST("/yl/doguess")//猜数字收费区

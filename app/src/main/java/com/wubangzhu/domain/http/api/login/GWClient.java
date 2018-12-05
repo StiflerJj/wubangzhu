@@ -6,32 +6,26 @@ import com.wubangzhu.domain.http.Callback2;
 import com.wubangzhu.domain.http.Callback3;
 import com.wubangzhu.domain.http.URL;
 import com.wubangzhu.domain.http.response.login.BaseResponse;
+import com.wubangzhu.domain.http.response.login.FIndAllGouWu;
 import com.wubangzhu.domain.http.response.login.LoginResponse;
 import com.wubangzhu.domain.http.response.login.UserInfoResponse;
 
 import retrofit.RestAdapter;
 
 public class GWClient {
-    LoginApi loginApi = new RestAdapter.Builder()
+    GWApi gouwuapi = new RestAdapter.Builder()
             .setEndpoint(URL.HOST)
             .setLogLevel(BuildConfig.DEBUG? RestAdapter.LogLevel.FULL : RestAdapter.LogLevel.NONE)
             .build()
-            .create(LoginApi.class);
-
-    public void postLogin(String phone,String pwd, Callback2<LoginResponse> responseCallback2){
-        loginApi.postLogin(phone,pwd,responseCallback2);
+            .create(GWApi.class);
+    public void postFindpicByType(String ukey, int type,Callback2<BaseResponse> responseCallback2){
+        gouwuapi.postFindpicBytype(ukey,type,responseCallback2);
     }
-    public void postRcode(String request, Callback2<BaseResponse> responseCallback2){
-        loginApi.postRcode(request.toString(),responseCallback2);
+    public void postgwFindAll(String ukey, Callback2<FIndAllGouWu> responseCallback2){
+        gouwuapi.postgwfindAll(ukey,responseCallback2);
     }
-    public void postRegist(String phonenumber,String code,String password,String tgname, Callback2<BaseResponse> responseCallback2){
-        loginApi.postRegist(phonenumber,code,password,tgname,responseCallback2);
-    }
-    public void postFindUser(String ukey,int id, Callback3<UserInfoResponse> responseCallback2){
-        loginApi.postFindUser(ukey,id,responseCallback2);
-    }
-    public void postgoToTg(String ukey,int id, Callback2<BaseResponse> responseCallback2){
-        loginApi.postgoToTg(ukey,id,responseCallback2);
+    public void postgwBuy(String ukey,int gwsmodelid,int howmany,int xa,int xb,double paymoney, Callback2<BaseResponse> responseCallback2){
+        gouwuapi.postgoumai(ukey,gwsmodelid,howmany,xa,xb,paymoney,responseCallback2);
     }
 
 

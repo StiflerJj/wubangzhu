@@ -76,4 +76,9 @@
     <string name="userinfo_buystr">购买</string>
     <!--gameinfo-->
     <string name="gameinfo_biao">参加竞猜</string>
+    <string name="gameinfo_biao_title">幸运猜猜猜</string>
+    <string name="gameinfo_biao_content">请输入您认为最准确的幸运数字</string>
+    <string name="gameinfo_biao_content_null">请正确输入幸运数字</string>
+    <string name="gameinfo_biao_ok">确定</string>
+    <string name="gameinfo_biao_cancel">取消</string>
 </resources>

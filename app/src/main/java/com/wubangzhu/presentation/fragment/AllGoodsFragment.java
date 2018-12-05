@@ -3,6 +3,7 @@ package com.wubangzhu.presentation.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +23,8 @@ public class AllGoodsFragment extends BaseFragment {
     Banner banner;
     @BindView(R.id.barrageView)
     BarrageView barrageView;
+    @BindView(R.id.shop_list)
+    RecyclerView shoplistView;
 
     @Nullable
     @Override
