@@ -21,6 +21,9 @@ public class GWClient {
     public void postFindpicByType(String ukey, int type,Callback2<BaseResponse> responseCallback2){
         gouwuapi.postFindpicBytype(ukey,type,responseCallback2);
     }
+    public void postFindNoticeByType(String ukey, int type,Callback2<BaseResponse> responseCallback2){
+        gouwuapi.postFindpicBytype(ukey,type,responseCallback2);
+    }
     public void postgwFindAll(String ukey, Callback2<FIndAllGouWu> responseCallback2){
         gouwuapi.postgwfindAll(ukey,responseCallback2);
     }

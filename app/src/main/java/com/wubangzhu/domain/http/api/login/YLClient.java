@@ -37,4 +37,11 @@ public class YLClient {
     public void postbaomingPay(String ukey,int userid,int ourguessid,int bmGuessNumber,Callback2<BaseResponse> responseCallback2){
         ylApi.postbaomingPay(ukey,userid,ourguessid,bmGuessNumber,responseCallback2);
     }
+    public void postguessPay(String ukey,int userid,int ourguessid,int bmGuessNumber,Callback2<BaseResponse> responseCallback2){
+        ylApi.postdoguessPay(ukey,userid,ourguessid,bmGuessNumber,responseCallback2);
+    }
+
+    public void postfindMyWaitGuess(String ukey,int userid,Callback2<BaseResponse> responseCallback2){
+        ylApi.postdoguessPay(ukey,userid,responseCallback2);
+    }
 }

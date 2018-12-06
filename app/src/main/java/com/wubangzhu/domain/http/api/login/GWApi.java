@@ -13,6 +13,8 @@ import retrofit.http.Query;
 public interface GWApi {
     @POST("/pic/findPictureByType")//获取根据 type 获取轮播图
     void postFindpicBytype(@Query("ukey") String ukey,@Query("type") int type, Callback2<BaseResponse> callback2);
+    @POST("/notice/findNoticeByType")//获取根据 type 获取notice
+    void postFindNoticeBytype(@Query("ukey") String ukey,@Query("type") int type, Callback2<BaseResponse> callback2);
     @POST("/gw/findAll")//购物区所有
     void postgwfindAll(@Query("ukey") String ukey, Callback2<FIndAllGouWu> callback2);
     @POST("/gw/gw")//购物区购买
