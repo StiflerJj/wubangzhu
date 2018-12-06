@@ -1,69 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-     android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/dp_10">
+
+
     <ImageView
         android:id="@+id/info_avatar"
-        android:src="@mipmap/ic_launcher"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:src="@drawable/user" />
+
     <TextView
         android:id="@+id/info_phone"
-        android:layout_toRightOf="@id/info_avatar"
+        style="@style/BigText"
+        android:textSize="14sp"
+        android:textColor="@color/white"
         android:layout_marginLeft="@dimen/dp_10"
-        style="@style/BigText"/>
+        android:layout_toRightOf="@id/info_avatar" />
+
     <TextView
         android:id="@+id/info_tgid"
-        android:layout_toRightOf="@id/info_avatar"
+        style="@style/MiddleText"
+        android:textSize="14sp"
+        android:textColor="@color/white"
         android:layout_below="@id/info_phone"
         android:layout_margin="@dimen/dp_10"
-        style="@style/MiddleText"/>
+        android:layout_toRightOf="@id/info_avatar" />
+
     <Button
         android:id="@+id/info_tgbtn"
-        android:layout_alignParentRight="true"
+        style="@style/InsideBtn"
         android:layout_below="@id/info_phone"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/btn_gettg"
         android:text="@string/userinfo_tgbtnstr"
-        style="@style/InsideBtn"/>
+        android:textColor="#242424"
+        android:textSize="@dimen/sp_12"/>
+    <RadioGroup
+        android:id="@+id/biao_group"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_below="@id/info_avatar"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/biao_ing_btn"
+            style="@style/RadioGroupTabStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/black"
+            android:text="等待竞猜"
+            android:textColor="@color/white" />
+
+        <RadioButton
+            android:id="@+id/biao_bingo_btn"
+            style="@style/RadioGroupTabStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@color/green"
+            android:text="竞猜历史"
+            android:textColor="@color/white" />
+    </RadioGroup>
+
     <LinearLayout
         android:id="@+id/info_biao"
-        android:layout_below="@id/info_tgbtn"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
+        android:layout_height="100dp"
+        android:layout_below="@id/biao_group"
         android:layout_marginTop="@dimen/dp_10"
-        android:layout_height="100dp">
+        android:orientation="horizontal">
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/info_waitbiao"
-            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_marginRight="@dimen/dp_10"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            ></android.support.v7.widget.RecyclerView>
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/info_zhongbiao"
-            android:layout_weight="1"
-            android:layout_marginLeft="@dimen/dp_10"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            ></android.support.v7.widget.RecyclerView>
+            android:layout_weight="1"></android.support.v7.widget.RecyclerView>
+
 
     </LinearLayout>
-<TextView
-    android:id="@+id/info_ticketA"
-    android:layout_below="@id/info_biao"
-    style="@style/MiddleText" />
+
+    <TextView
+        android:id="@+id/info_ticketA"
+        style="@style/SmallText"
+        android:layout_below="@id/info_biao" />
+
     <TextView
         android:id="@+id/info_ticketB"
+        style="@style/SmallText"
         android:layout_below="@id/info_ticketA"
-        android:layout_marginTop="@dimen/dp_10"
-        style="@style/MiddleText" />
+        android:layout_marginTop="@dimen/dp_10" />
+
     <Button
         android:id="@+id/info_buytiket"
         style="@style/InsideBtn"
-        android:layout_below="@id/info_ticketA"
+        android:layout_alignTop="@+id/info_ticketA"
         android:layout_alignParentRight="true"
+        android:background="@drawable/btn_buyticket"
         android:text="@string/userinfo_buystr"
-         />
+        android:textSize="@dimen/sp_12"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/info_buyhistorylist"
         android:layout_width="match_parent"
@@ -73,22 +111,21 @@
     <TextView
         android:id="@+id/info_totalincome"
         style="@style/MiddleText"
-        android:layout_below="@id/info_buyhistorylist"
-        />
+        android:layout_below="@id/info_buyhistorylist" />
+
     <TextView
         android:id="@+id/info_dayincome"
         style="@style/SmallText"
-        android:layout_below="@id/info_totalincome"
-        />
+        android:layout_below="@id/info_totalincome" />
+
     <TextView
         android:id="@+id/info_totalpeople"
         style="@style/MiddleText"
-        android:layout_below="@id/info_dayincome"
-        />
+        android:layout_below="@id/info_dayincome" />
+
     <TextView
         android:id="@+id/info_daypeople"
         style="@style/SmallText"
-        android:layout_below="@id/info_totalpeople"
-        />
+        android:layout_below="@id/info_totalpeople" />
 
 </RelativeLayout>

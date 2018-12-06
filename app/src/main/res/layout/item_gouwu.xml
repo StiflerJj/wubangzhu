@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <ImageView
+        android:id="@+id/img_gouwu"
+        android:layout_margin="13dp"
+        android:layout_width="83dp"
+        android:layout_height="83dp" />
+    <TextView
+        android:id="@+id/title_gouwu"
+        style="@style/Gouwutitle"
+        android:layout_toRightOf="@id/img_gouwu"
+        android:layout_marginTop="24dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/info_gouwu"
+        style="@style/Gouwuinfo"
+        android:layout_toRightOf="@id/img_gouwu"
+        android:layout_below="@id/title_gouwu"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/price_gouwu"
+        style="@style/Gouwuprice"
+        android:layout_toRightOf="@id/img_gouwu"
+        android:layout_below="@id/info_gouwu"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/btnbuy_gouwu"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/btn_gouwubuy"
+        android:text="@string/userinfo_buystr"
+        android:layout_alignTop="@id/info_gouwu"
+        android:textColor="#df0302"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_below="@id/btnbuy_gouwu"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="18dp"
+        android:background="#d0d0d0"
+        android:layout_width="338dp"
+        android:layout_height="1dp"></View>
+</RelativeLayout>

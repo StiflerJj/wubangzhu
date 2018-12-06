@@ -50,7 +50,7 @@ public class RegistActivity extends BaseInfoActivity{
 
             if(isRegistEmpty())
                 return;
-            new LoginClient().postRegist(editTextPhone.getText().toString(),editTextCode.getText().toString(),editTextPwd.getText().toString(),editTextCode.getText().toString(), new Callback2<BaseResponse>() {
+            new LoginClient().postRegist(editTextPhone.getText().toString(),editTextCode.getText().toString(),editTextPwd.getText().toString(),editTextInviter.getText().toString(), new Callback2<BaseResponse>() {
                 @Override
                 public void onFailure(RetrofitError retrofitError) {
 

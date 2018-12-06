@@ -4,13 +4,10 @@ public class UserInfoResponse extends BaseResponse{
 
 
     /**
-     * code : 0
-     * message : 请求成功
-     * user : {"id":13,"phonenumber":"13722852917","password":"ffd0dac854eecfb5ce080c5ce722125b","name":"13722852917","address":null,"state":0,"coin":0,"istg":0,"tgname":null}
+     * user : {"id":16,"phonenumber":"13722852917","password":"e8ca4c1bcf298360bfa528f205df98f8","name":"13722852917","address":null,"state":0,"xa":0,"xb":0,"istg":0,"tgname":null}
      */
 
     private UserBean user;
-
 
     public UserBean getUser() {
         return user;
@@ -22,13 +19,14 @@ public class UserInfoResponse extends BaseResponse{
 
     public static class UserBean {
         /**
-         * id : 13
+         * id : 16
          * phonenumber : 13722852917
-         * password : ffd0dac854eecfb5ce080c5ce722125b
+         * password : e8ca4c1bcf298360bfa528f205df98f8
          * name : 13722852917
          * address : null
          * state : 0
-         * coin : 0
+         * xa : 0
+         * xb : 0
          * istg : 0
          * tgname : null
          */
@@ -39,7 +37,8 @@ public class UserInfoResponse extends BaseResponse{
         private String name;
         private Object address;
         private int state;
-        private int coin;
+        private int xa;
+        private int xb;
         private int istg;
         private Object tgname;
 
@@ -91,12 +90,20 @@ public class UserInfoResponse extends BaseResponse{
             this.state = state;
         }
 
-        public int getCoin() {
-            return coin;
+        public int getXa() {
+            return xa;
         }
 
-        public void setCoin(int coin) {
-            this.coin = coin;
+        public void setXa(int xa) {
+            this.xa = xa;
+        }
+
+        public int getXb() {
+            return xb;
+        }
+
+        public void setXb(int xb) {
+            this.xb = xb;
         }
 
         public int getIstg() {

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+    <com.youth.banner.Banner
+        android:id="@+id/banber_goodinfo"
+        android:layout_width="match_parent"
+        android:layout_height="164dp"
+        ></com.youth.banner.Banner>
+    <TextView
+        android:id="@+id/title_gouwuinfo"
+        style="@style/Gouwutitle"
+        android:layout_below="@id/banber_goodinfo"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/info_gouwuinfo"
+        style="@style/Gouwuinfo"
+        android:layout_below="@id/title_gouwuinfo"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/price_gouwuinfo"
+        style="@style/Gouwuprice"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="22dp"
+        android:layout_below="@id/title_gouwuinfo"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <View
+        android:id="@+id/gray1"
+        android:background="#f3f3f3"
+        android:layout_below="@id/info_gouwuinfo"
+        android:layout_marginTop="19dp"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_10"></View>
+    <View
+        android:id="@+id/red1"
+        android:layout_below="@id/gray1"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="@drawable/redblock"
+        android:layout_width="6dp"
+        android:layout_height="15dp"
+        ></View>
+    <TextView
+        android:text="卡券"
+        style="@style/Gouwutitle"
+        android:layout_below="@id/gray1"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_toRightOf="@id/red1"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <View
+        android:layout_below="@id/red1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="9dp"
+        android:background="#d0d0d0"
+        android:layout_width="338dp"
+        android:layout_height="1dp"></View>
+    <TextView
+        android:id="@+id/ticketusecount_gouwuinfo"
+        style="@style/Gouwutitle"
+        android:layout_below="@id/red1"
+        android:layout_margin="24dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/ticketacountuse_gouwuinfo"
+        android:layout_margin="22dp"
+        android:layout_alignLeft="@id/ticketacountuse_gouwuinfo"
+        android:layout_below="@+id/ticketusecount_gouwuinfo"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+
+    <RelativeLayout
+        android:background="@drawable/bottom_gouwu"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/purchase_gouwu"
+            style="@style/Gouwuneedpurchase"
+            android:layout_marginLeft="28dp"
+            android:layout_centerVertical="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <Button
+            android:id="@+id/btn_purchase"
+            android:background="@drawable/btn_gouwupurchase"
+            android:textColor="@color/white"
+            android:layout_alignParentRight="true"
+            android:text="@string/userinfo_buystr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

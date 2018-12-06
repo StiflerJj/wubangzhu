@@ -37,5 +37,9 @@ public class LoginClient {
         loginApi.postgoToTg(ukey,id,responseCallback2);
     }
 
+    public void postchongzhiTest(String ukey,int userid,int money, Callback2<BaseResponse> responseCallback2){
+        loginApi.postchongzhiTest(ukey,userid,money,responseCallback2);
+    }
+
 
 }

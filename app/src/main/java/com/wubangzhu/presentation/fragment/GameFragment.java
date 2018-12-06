@@ -232,8 +232,8 @@ public class GameFragment extends BaseFragment {
         mGameList.setLayoutManager(new LinearLayoutManager(getContext()));
         inputView = LayoutInflater.from(getContext()).inflate(R.layout.view_guessinput, null);
         inputViewFree = LayoutInflater.from(getContext()).inflate(R.layout.view_guessfree, null);
-//        game_group.setOnCheckedChangeListener(onCheckedChanged);
     }
+//        game_group.setOnCheckedChangeListener(onCheckedChanged);
 //    private RadioGroup.OnCheckedChangeListener onCheckedChanged = new RadioGroup.OnCheckedChangeListener() {
 //        @Override
 //        public void onCheckedChanged(RadioGroup radioGroup, int i) {

@@ -4,7 +4,21 @@ import java.util.List;
 
 public class FIndAllGouWu extends BaseResponse{
 
+    /**
+     * gwshopmodels : [{"id":1,"name":"小熊玩具","state":1,"pirce":100,"xa":3,"xb":4,"youfei":5,"picture":"http://192.168.0.102:9090/image/1.png","picture1":"http://192.168.0.102:9090/image/x.png","picture2":"","picture3":""}]
+     * gwshopmodel : null
+     */
+
+    private Object gwshopmodel;
     private List<GwshopmodelsBean> gwshopmodels;
+
+    public Object getGwshopmodel() {
+        return gwshopmodel;
+    }
+
+    public void setGwshopmodel(Object gwshopmodel) {
+        this.gwshopmodel = gwshopmodel;
+    }
 
     public List<GwshopmodelsBean> getGwshopmodels() {
         return gwshopmodels;
@@ -19,21 +33,27 @@ public class FIndAllGouWu extends BaseResponse{
          * id : 1
          * name : 小熊玩具
          * state : 1
-         * pirce : 100
+         * pirce : 100.0
          * xa : 3
          * xb : 4
          * youfei : 5
-         * picur1 : null
+         * picture : http://192.168.0.102:9090/image/1.png
+         * picture1 : http://192.168.0.102:9090/image/x.png
+         * picture2 :
+         * picture3 :
          */
 
         private int id;
         private String name;
         private int state;
-        private int pirce;
+        private double pirce;
         private int xa;
         private int xb;
         private int youfei;
-        private Object picur1;
+        private String picture;
+        private String picture1;
+        private String picture2;
+        private String picture3;
 
         public int getId() {
             return id;
@@ -59,11 +79,11 @@ public class FIndAllGouWu extends BaseResponse{
             this.state = state;
         }
 
-        public int getPirce() {
+        public double getPirce() {
             return pirce;
         }
 
-        public void setPirce(int pirce) {
+        public void setPirce(double pirce) {
             this.pirce = pirce;
         }
 
@@ -91,12 +111,36 @@ public class FIndAllGouWu extends BaseResponse{
             this.youfei = youfei;
         }
 
-        public Object getPicur1() {
-            return picur1;
+        public String getPicture() {
+            return picture;
         }
 
-        public void setPicur1(Object picur1) {
-            this.picur1 = picur1;
+        public void setPicture(String picture) {
+            this.picture = picture;
+        }
+
+        public String getPicture1() {
+            return picture1;
+        }
+
+        public void setPicture1(String picture1) {
+            this.picture1 = picture1;
+        }
+
+        public String getPicture2() {
+            return picture2;
+        }
+
+        public void setPicture2(String picture2) {
+            this.picture2 = picture2;
+        }
+
+        public String getPicture3() {
+            return picture3;
+        }
+
+        public void setPicture3(String picture3) {
+            this.picture3 = picture3;
         }
     }
 }

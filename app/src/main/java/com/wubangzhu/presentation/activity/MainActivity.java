@@ -111,6 +111,7 @@ public class MainActivity extends BaseActivity{
                         break;
                     case R.id.radio_button_info:
                         mSectionsPagerAdapter.getItem(3);
+                        setTitle("个人中心");
                         break;
                     default:
                         break;

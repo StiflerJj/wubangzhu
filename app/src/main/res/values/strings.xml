@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">wubangzhu</string>
+    <string name="app_name">券乐多</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
     //network
@@ -74,11 +74,15 @@
     <!--userinfo-->
     <string name="userinfo_tgbtnstr">推广员申请</string>
     <string name="userinfo_buystr">购买</string>
+    <string name="userinfo_howmuch">请输入购买数量</string>
+    <string name="userinfo_paymoney_content_null">请正确输入购买数量</string>
     <!--gameinfo-->
     <string name="gameinfo_biao">参加竞猜</string>
+    <string name="gameinfo_biao_short">竞猜</string>
     <string name="gameinfo_biao_title">幸运猜猜猜</string>
     <string name="gameinfo_biao_content">请输入您认为最准确的幸运数字</string>
     <string name="gameinfo_biao_content_null">请正确输入幸运数字</string>
     <string name="gameinfo_biao_ok">确定</string>
     <string name="gameinfo_biao_cancel">取消</string>
+    <string name="gameinfo_biao_notstart">本次竞猜尚未开始，请稍等</string>
 </resources>

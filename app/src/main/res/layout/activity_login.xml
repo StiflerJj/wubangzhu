@@ -4,14 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
-    android:background="#2098fe"
+    android:background="@color/white"
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@drawable/login_banner"
+        android:background="@drawable/login_bg"
         />
 
     <EditText
@@ -34,9 +34,9 @@
         android:layout_marginTop="26dp"
         android:ems="10"
         android:inputType="textPassword"
-        android:text="123456"
         android:drawableLeft="@drawable/login_img_password"
         android:hint="@string/pwd"
+        android:text="111111"
         android:textColorHint="@color/white"
         android:background="@drawable/edittext_bg1"
         android:drawableRight="@drawable/login_img_eye"/>

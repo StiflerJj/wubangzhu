@@ -4,6 +4,7 @@ import com.wubangzhu.BuildConfig;
 import com.wubangzhu.domain.http.Callback2;
 import com.wubangzhu.domain.http.URL;
 import com.wubangzhu.domain.http.response.login.AllGoods;
+import com.wubangzhu.domain.http.response.login.AllMyBiao;
 import com.wubangzhu.domain.http.response.login.AllPayGoods;
 import com.wubangzhu.domain.http.response.login.BaseResponse;
 import com.wubangzhu.domain.http.response.login.LoginResponse;
@@ -41,7 +42,10 @@ public class YLClient {
         ylApi.postdoguessPay(ukey,userid,ourguessid,bmGuessNumber,responseCallback2);
     }
 
-    public void postfindMyWaitGuess(String ukey,int userid,Callback2<BaseResponse> responseCallback2){
+    public void postfindMyWaitGuess(String ukey,int userid,Callback2<AllMyBiao> responseCallback2){
         ylApi.postdoguessPay(ukey,userid,responseCallback2);
+    }
+    public void postfindMyWin(String ukey,int userid,Callback2<AllMyBiao> responseCallback2){
+        ylApi.postfindMyGuessWin(ukey,userid,responseCallback2);
     }
 }
