@@ -2,7 +2,7 @@ package com.wubangzhu.domain.http.response.login;
 
 import java.util.List;
 
-public class DanmuResponse {
+public class DanmuResponse extends BaseResponse{
 
     /**
      * code : 0
@@ -10,25 +10,8 @@ public class DanmuResponse {
      * notices : [{"id":2,"title":"恭喜","conbody":"小李上周收益1000元","type":2,"state":2}]
      */
 
-    private int code;
-    private String message;
     private List<NoticesBean> notices;
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public List<NoticesBean> getNotices() {
         return notices;

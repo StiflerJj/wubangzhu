@@ -11,14 +11,16 @@ import java.util.List;
 public class PayAdapter extends BaseQuickAdapter<AllPayGoods.OurGuessesBean, BaseViewHolder> {
 
     public PayAdapter(List<AllPayGoods.OurGuessesBean> bean) {
-        super(R.layout.item_free, bean);
+        super(R.layout.item_yule, bean);
     }
 
 
     @Override
     protected void convert(BaseViewHolder helper, AllPayGoods.OurGuessesBean item) {
-        helper.setText(R.id.free_goodname, item.getName());
-        helper.addOnClickListener(R.id.free_biao);
+        helper.setText(R.id.title_yule, item.getName());
+        helper.setText(R.id.info_yule, item.getName());
+        helper.setText(R.id.price_yule, item.getPrice());
+        helper.addOnClickListener(R.id.btnbuy_yule);
 
     }
 }

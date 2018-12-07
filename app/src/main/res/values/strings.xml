@@ -14,7 +14,7 @@
     <string name="phone">手机号</string>
     <string name="pwd">密码</string>
     <string name="pwdagain">确认密码</string>
-    <string name="inviter">邀请人(选填)</string>
+    <string name="inviter">邀请人(必填)</string>
     <string name="login">登录</string>
     <string name="regist">注册</string>
     <string name="yanzhengma">验证码</string>
@@ -85,4 +85,6 @@
     <string name="gameinfo_biao_ok">确定</string>
     <string name="gameinfo_biao_cancel">取消</string>
     <string name="gameinfo_biao_notstart">本次竞猜尚未开始，请稍等</string>
+    <!--shoppinginfo-->
+    <string name="shopping_ticketnotenough">你的账户优惠券不足，请充值</string>
 </resources>

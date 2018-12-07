@@ -116,4 +116,11 @@
         <item name="android:textSize">17sp</item>
         <item name="android:gravity">left</item>
     </style>
+    <!-- Text style "a_0_b_0" -->
+    <!-- Add this snippet to styles.xml. -->
+    <style name="GouwuMyTicketleft">
+        <item name="android:textColor">#858585</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:gravity">left</item>
+    </style>
 </resources>

@@ -62,7 +62,7 @@ public class MainActivity extends BaseActivity{
 
 
 
-    MainFragment tab01 = new MainFragment();
+    AllGoodsFragment tab01 = new AllGoodsFragment();
     AllGoodsFragment tab02 = new AllGoodsFragment();
     GameFragment tab03 = new GameFragment();
     UserInfoFragment tab04 = new UserInfoFragment();
@@ -118,7 +118,7 @@ public class MainActivity extends BaseActivity{
                 }
             }
         });
-        mRadioBtnMain.setChecked(true);
+        mRadioBtnhealth.setChecked(true);
     }
     @OnClick({R.id.radio_button_home, R.id.radio_button_health, R.id.radio_button_manage, R.id.radio_button_info})
     void onClick(View view) {

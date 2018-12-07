@@ -12,10 +12,10 @@
     <com.kd.easybarrage.BarrageView
         android:id="@+id/barrageView"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
+        android:layout_height="39dp"
         android:layout_above="@+id/send"
         app:allow_repeat="true"
-        app:border_color="@color/colorAccent"
+        android:background="@drawable/shot_bg"
         app:line_height="20dp"
         app:max_text_size="12"
         app:min_text_size="12"

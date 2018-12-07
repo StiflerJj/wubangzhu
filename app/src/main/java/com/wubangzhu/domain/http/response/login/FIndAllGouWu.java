@@ -1,5 +1,6 @@
 package com.wubangzhu.domain.http.response.login;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class FIndAllGouWu extends BaseResponse{
@@ -28,7 +29,7 @@ public class FIndAllGouWu extends BaseResponse{
         this.gwshopmodels = gwshopmodels;
     }
 
-    public static class GwshopmodelsBean {
+    public static class GwshopmodelsBean implements Serializable{
         /**
          * id : 1
          * name : 小熊玩具

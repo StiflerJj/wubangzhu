@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    android:background="#f75046"
+    android:background="@color/white"
     tools:context=".presentation.activity.MainActivity"
     >
 
@@ -14,7 +14,7 @@
         android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/transparent"
+        android:background="#f75046"
         app:elevation="0dp"
         >
 
@@ -54,7 +54,7 @@
         android:layout_width="match_parent"
         android:layout_height="40dp"
         android:layout_gravity="bottom"
-        android:background="@android:color/white"
+        android:background="@drawable/radiogourp_bg"
         android:gravity="center"
         android:paddingTop="4dp"
         android:orientation="horizontal">

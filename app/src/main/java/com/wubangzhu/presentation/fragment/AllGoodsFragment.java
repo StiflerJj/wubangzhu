@@ -1,5 +1,6 @@
 package com.wubangzhu.presentation.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -9,12 +10,16 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.blankj.utilcode.util.ActivityUtils;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.kd.easybarrage.Barrage;
 import com.kd.easybarrage.BarrageView;
 import com.wubangzhu.R;
 import com.wubangzhu.domain.http.Callback2;
 import com.wubangzhu.domain.http.api.login.GWClient;
+import com.wubangzhu.domain.http.response.login.DanmuResponse;
 import com.wubangzhu.domain.http.response.login.FIndAllGouWu;
+import com.wubangzhu.presentation.activity.GoodsInfoActivity;
 import com.wubangzhu.presentation.adapter.BuyAdapter;
 import com.wubangzhu.presentation.widgets.GlideImageLoader;
 import com.wubangzhu.util.ShareData;
@@ -57,21 +62,46 @@ public class AllGoodsFragment extends BaseFragment {
                     }
 
                     @Override
-                    public void onSuccess(FIndAllGouWu response, Response response2) throws InterruptedException, JSONException {
+                    public void onSuccess(final FIndAllGouWu response, Response response2) throws InterruptedException, JSONException {
 
                         if(response!=null && response.getGwshopmodels()!=null && response.getGwshopmodels().size()>0){
                             buyAdapter = new BuyAdapter(getActivity(),response.getGwshopmodels());
+                            buyAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+                                @Override
+                                public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                                    Intent intent = new Intent(getContext(), GoodsInfoActivity.class);
+                                    intent.putExtra("good",response.getGwshopmodels().get(position));
+                                    ActivityUtils.startActivity(intent);
+                                }
+                            });
                             shoplistView.setAdapter(buyAdapter);
                         }
                     }
                 }
         );
+        new GWClient().postFindNoticeByType(ShareData.getShareStringData(ShareKeys.Login_UKEY), 1, new Callback2<DanmuResponse>() {
+            @Override
+            public void onFailure(RetrofitError retrofitError) {
+
+            }
+
+            @Override
+            public void onSuccess(DanmuResponse response, Response response2) throws InterruptedException, JSONException {
+
+                if(response!=null && response.getNotices()!=null && response.getNotices().size()>0){
+                    for(int i=0;i<response.getNotices().size();i++){
+                        barrageView.addBarrage(new Barrage(response.getNotices().get(i).getConbody()));
+                    }
+                }
+            }
+        });
     }
 
     private void initView() {
         banner.setImageLoader(new GlideImageLoader());
         banner.setImages(ShareKeys.getImages());
         banner.start();
+
         barrageView.addBarrage(new Barrage("恭喜XXX猜中iPhone XS Max！"));
         shoplistView.setLayoutManager(new LinearLayoutManager(getContext()));
     }

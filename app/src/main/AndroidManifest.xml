@@ -38,6 +38,10 @@
             android:name=".presentation.activity.MainActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".presentation.activity.GoodsInfoActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"></activity>
         <!-- 微信支付 -->
         <activity
             android:name="com.tsy.sdk.pay.weixin.WXPayCallbackActivity"
