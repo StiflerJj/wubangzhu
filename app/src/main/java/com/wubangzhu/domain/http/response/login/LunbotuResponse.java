@@ -2,7 +2,7 @@ package com.wubangzhu.domain.http.response.login;
 
 import java.util.List;
 
-public class LunbotuResponse {
+public class LunbotuResponse extends BaseResponse{
 
     /**
      * code : 0
@@ -10,25 +10,8 @@ public class LunbotuResponse {
      * pictures : [{"id":1,"path":"http://localhost:9090/image/1.png","type":2,"state":2}]
      */
 
-    private int code;
-    private String message;
     private List<PicturesBean> pictures;
 
-    public int getCode() {
-        return code;
-    }
-
-    public void setCode(int code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
 
     public List<PicturesBean> getPictures() {
         return pictures;

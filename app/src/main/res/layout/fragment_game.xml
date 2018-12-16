@@ -7,19 +7,21 @@
     <com.youth.banner.Banner
         android:id="@+id/banber_game"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="159dp"
         ></com.youth.banner.Banner>
     <com.kd.easybarrage.BarrageView
         android:id="@+id/barrageView"
-        android:layout_width="match_parent"
+        android:layout_width="342dp"
         android:layout_height="39dp"
+        android:layout_marginTop="@dimen/dp_10"
         android:layout_above="@+id/send"
-        android:background="@drawable/shot_bg"
         app:allow_repeat="true"
-        app:border_color="#ffe6d3"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
+        android:background="@drawable/shot_bg"
         app:line_height="20dp"
-        app:max_text_size="12"
-        app:min_text_size="12"
+        app:max_text_size="14"
+        app:min_text_size="14"
         app:random_color="true"
         app:size="200"/>
     <RadioGroup
@@ -31,17 +33,18 @@
         >
         <RadioButton
             android:id="@+id/free_btn"
-            android:background="@color/black"
+            android:background="@drawable/radio_free"
             android:textColor="@color/white"
-            android:text="free area"
+            android:text="免费区"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            style="@style/RadioGroupTabStyle"/>
+            style="@style/RadioGroupTabStyle"
+            />
         <RadioButton
             android:id="@+id/pay_btn"
-            android:background="@color/green"
-            android:textColor="@color/white"
-            android:text="pay area"
+            android:background="@drawable/radio_pay"
+            android:textColor="#a2a2a2"
+            android:text="付费区"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             style="@style/RadioGroupTabStyle"/>

@@ -3,8 +3,10 @@ package com.wubangzhu.domain.http.api.login;
 import com.wubangzhu.domain.http.Callback2;
 import com.wubangzhu.domain.http.response.login.AllGoods;
 import com.wubangzhu.domain.http.response.login.AllMyBiao;
+import com.wubangzhu.domain.http.response.login.AllMyHistoryBiao;
 import com.wubangzhu.domain.http.response.login.AllPayGoods;
 import com.wubangzhu.domain.http.response.login.BaseResponse;
+import com.wubangzhu.domain.http.response.login.GoodHistoryLIst;
 import com.wubangzhu.domain.http.response.login.StartShopResponse;
 
 import retrofit.http.POST;
@@ -30,6 +32,6 @@ public interface YLApi {
     @POST("/yl/findMyWaitGuess")//获取当前用户等待/正在 参与游戏
     void postdoguessPay(@Query("ukey") String ukey,@Query("userid") int userid,Callback2<AllMyBiao> callback2);
 
-    @POST("/yl/findMyGuessWin")//获取当前用户猜到的游戏
-    void postfindMyGuessWin(@Query("ukey") String ukey,@Query("userid") int userid,Callback2<AllMyBiao> callback2);
+    @POST("/yl/findMyGuess")//获取当前用户猜到的游戏
+    void postfindMyGuess(@Query("ukey") String ukey, @Query("userid") int userid, @Query("type") int type, Callback2<AllMyHistoryBiao> callback2);
 }

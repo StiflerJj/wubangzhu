@@ -7,18 +7,21 @@
     <com.youth.banner.Banner
         android:id="@+id/banber_shop"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
+        android:layout_height="159dp"
         ></com.youth.banner.Banner>
     <com.kd.easybarrage.BarrageView
         android:id="@+id/barrageView"
-        android:layout_width="match_parent"
+        android:layout_width="342dp"
         android:layout_height="39dp"
+        android:layout_marginTop="@dimen/dp_10"
         android:layout_above="@+id/send"
         app:allow_repeat="true"
+        android:layout_gravity="center"
+        android:gravity="center_vertical"
         android:background="@drawable/shot_bg"
         app:line_height="20dp"
-        app:max_text_size="12"
-        app:min_text_size="12"
+        app:max_text_size="14"
+        app:min_text_size="14"
         app:random_color="true"
         app:size="200"/>
     <android.support.v7.widget.RecyclerView

@@ -5,16 +5,13 @@ import com.wubangzhu.domain.http.Callback2;
 import com.wubangzhu.domain.http.URL;
 import com.wubangzhu.domain.http.response.login.AllGoods;
 import com.wubangzhu.domain.http.response.login.AllMyBiao;
+import com.wubangzhu.domain.http.response.login.AllMyHistoryBiao;
 import com.wubangzhu.domain.http.response.login.AllPayGoods;
 import com.wubangzhu.domain.http.response.login.BaseResponse;
-import com.wubangzhu.domain.http.response.login.LoginResponse;
+import com.wubangzhu.domain.http.response.login.GoodHistoryLIst;
 import com.wubangzhu.domain.http.response.login.StartShopResponse;
 
-import org.json.JSONException;
-
 import retrofit.RestAdapter;
-import retrofit.RetrofitError;
-import retrofit.client.Response;
 
 public class YLClient {
     YLApi ylApi = new RestAdapter.Builder()
@@ -45,7 +42,7 @@ public class YLClient {
     public void postfindMyWaitGuess(String ukey,int userid,Callback2<AllMyBiao> responseCallback2){
         ylApi.postdoguessPay(ukey,userid,responseCallback2);
     }
-    public void postfindMyWin(String ukey,int userid,Callback2<AllMyBiao> responseCallback2){
-        ylApi.postfindMyGuessWin(ukey,userid,responseCallback2);
+    public void postfindMyGuess(String ukey, int userid, int type, Callback2<AllMyHistoryBiao> responseCallback2){
+        ylApi.postfindMyGuess(ukey,userid,type,responseCallback2);
     }
 }

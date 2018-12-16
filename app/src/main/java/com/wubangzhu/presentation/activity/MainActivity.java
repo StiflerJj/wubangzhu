@@ -62,11 +62,10 @@ public class MainActivity extends BaseActivity{
 
 
 
-    AllGoodsFragment tab01 = new AllGoodsFragment();
     AllGoodsFragment tab02 = new AllGoodsFragment();
     GameFragment tab03 = new GameFragment();
     UserInfoFragment tab04 = new UserInfoFragment();
-    android.support.v4.app.Fragment[] fragments = {tab01, tab02, tab03, tab04};
+    android.support.v4.app.Fragment[] fragments = { tab02, tab03, tab04};
     boolean[] fragmentsUpdateFlag = {false, false, false, false};
     String username,userid;
 
@@ -100,17 +99,17 @@ public class MainActivity extends BaseActivity{
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 switch (i) {
-                    case R.id.radio_button_home:
+//                    case R.id.radio_button_home:
+//                        mSectionsPagerAdapter.getItem(0);
+//                        break;
+                    case R.id.radio_button_health:
                         mSectionsPagerAdapter.getItem(0);
                         break;
-                    case R.id.radio_button_health:
+                    case R.id.radio_button_manage:
                         mSectionsPagerAdapter.getItem(1);
                         break;
-                    case R.id.radio_button_manage:
-                        mSectionsPagerAdapter.getItem(2);
-                        break;
                     case R.id.radio_button_info:
-                        mSectionsPagerAdapter.getItem(3);
+                        mSectionsPagerAdapter.getItem(2);
                         setTitle("个人中心");
                         break;
                     default:
@@ -120,24 +119,24 @@ public class MainActivity extends BaseActivity{
         });
         mRadioBtnhealth.setChecked(true);
     }
-    @OnClick({R.id.radio_button_home, R.id.radio_button_health, R.id.radio_button_manage, R.id.radio_button_info})
+    @OnClick({ R.id.radio_button_health, R.id.radio_button_manage, R.id.radio_button_info})
     void onClick(View view) {
         switch (view.getId()) {
-            case R.id.radio_button_home:
-                mViewPager.setCurrentItem(0);
-                mRadioBtnMain.setChecked(true);
-
-                break;
+//            case R.id.radio_button_home:
+//                mViewPager.setCurrentItem(0);
+//                mRadioBtnMain.setChecked(true);
+//
+//                break;
             case R.id.radio_button_health:
-                mViewPager.setCurrentItem(1);
+                mViewPager.setCurrentItem(0);
                 mRadioBtnhealth.setChecked(true);
                 break;
             case R.id.radio_button_manage:
-                mViewPager.setCurrentItem(2);
+                mViewPager.setCurrentItem(1);
                 mRadioBtnmanage.setChecked(true);
                 break;
             case R.id.radio_button_info:
-                mViewPager.setCurrentItem(3);
+                mViewPager.setCurrentItem(2);
                 mRadioBtninfo.setChecked(true);
                 break;
             default:

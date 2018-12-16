@@ -1,6 +1,5 @@
 package com.wubangzhu.presentation.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -37,7 +36,7 @@ import butterknife.ButterKnife;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
 
-public class GoodsInfoActivity extends BaseActivity {
+public class BiaoInfoActivity extends BaseActivity {
     @BindView(R.id.banber_goodinfo)
     Banner banner;
     @BindView(R.id.title_gouwuinfo)

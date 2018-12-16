@@ -4,6 +4,7 @@ import java.util.List;
 
 public class AllPayGoods extends BaseResponse{
 
+
     private List<OurGuessesBean> ourGuesses;
 
     public List<OurGuessesBean> getOurGuesses() {
@@ -16,37 +17,43 @@ public class AllPayGoods extends BaseResponse{
 
     public static class OurGuessesBean {
         /**
-         * id : 3
+         * id : 22
          * name : 苹果8黑色64G
          * price : 15000
-         * picur1 : 15000
+         * picture : http://192.168.2.109:9090/image/1.png
+         * picture1 : http://192.168.2.109:9090/image/1.png
+         * picture2 : http://192.168.2.109:9090/image/1.png
+         * picture3 : http://192.168.2.109:9090/image/1.png
          * total : 5
-         * bmrs : 1 报名人数
-         * state : 1 报名中1 报满2 猜完3
-         * createtime : 1543248000000
-         * luckynumber : 3707.19
-         * islucky : 0 未猜中0 已猜中1
+         * bmrs : 0
+         * state : 1
+         * createtime : 1544194440000
+         * luckynumber : 5224.64
+         * islucky : 0
          * shopmodelid : 2
          * luckyuserid : null
-         * ghowtime : null 游戏持续时间
-         * gendtime : null 游戏结束时间
-         * gwaittime : null 游戏开始后需loading时间
-         * starttime : null 游戏开始时间
+         * ghowtime : 0
+         * gendtime : null
+         * gwaittime : null
+         * starttime : null
          */
 
         private int id;
         private String name;
         private String price;
-        private String picur1;
+        private String picture;
+        private String picture1;
+        private String picture2;
+        private String picture3;
         private int total;
         private int bmrs;
-        private String state;
+        private int state;
         private long createtime;
         private double luckynumber;
         private String islucky;
         private int shopmodelid;
         private Object luckyuserid;
-        private Object ghowtime;
+        private int ghowtime;
         private Object gendtime;
         private Object gwaittime;
         private Object starttime;
@@ -75,12 +82,36 @@ public class AllPayGoods extends BaseResponse{
             this.price = price;
         }
 
-        public String getPicur1() {
-            return picur1;
+        public String getPicture() {
+            return picture;
         }
 
-        public void setPicur1(String picur1) {
-            this.picur1 = picur1;
+        public void setPicture(String picture) {
+            this.picture = picture;
+        }
+
+        public String getPicture1() {
+            return picture1;
+        }
+
+        public void setPicture1(String picture1) {
+            this.picture1 = picture1;
+        }
+
+        public String getPicture2() {
+            return picture2;
+        }
+
+        public void setPicture2(String picture2) {
+            this.picture2 = picture2;
+        }
+
+        public String getPicture3() {
+            return picture3;
+        }
+
+        public void setPicture3(String picture3) {
+            this.picture3 = picture3;
         }
 
         public int getTotal() {
@@ -99,11 +130,11 @@ public class AllPayGoods extends BaseResponse{
             this.bmrs = bmrs;
         }
 
-        public String getState() {
+        public int getState() {
             return state;
         }
 
-        public void setState(String state) {
+        public void setState(int state) {
             this.state = state;
         }
 
@@ -147,11 +178,11 @@ public class AllPayGoods extends BaseResponse{
             this.luckyuserid = luckyuserid;
         }
 
-        public Object getGhowtime() {
+        public int getGhowtime() {
             return ghowtime;
         }
 
-        public void setGhowtime(Object ghowtime) {
+        public void setGhowtime(int ghowtime) {
             this.ghowtime = ghowtime;
         }
 

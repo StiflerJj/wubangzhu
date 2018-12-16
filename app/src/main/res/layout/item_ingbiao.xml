@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="horizontal" android:layout_width="match_parent"
-    android:layout_height="80dp" >
+    android:layout_height="60dp" >
     <TextView
         android:id="@+id/ingbiao_text"
-        style="@style/MiddleText"
+        style="@style/biao_wait"
+        android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
         android:layout_centerVertical="true"
         android:layout_height="wrap_content" />
     <Button
         android:id="@+id/ingbiao_btn"
         android:text="@string/gameinfo_biao_short"
-        style="@style/MiddleText"
+        android:background="@drawable/btn_gouwubuy"
+        android:textColor="#df0302"
         android:layout_alignParentRight="true"
         android:layout_centerVertical="true"
         android:layout_width="wrap_content"

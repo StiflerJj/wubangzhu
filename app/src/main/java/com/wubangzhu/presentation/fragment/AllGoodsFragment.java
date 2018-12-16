@@ -19,6 +19,7 @@ import com.wubangzhu.domain.http.Callback2;
 import com.wubangzhu.domain.http.api.login.GWClient;
 import com.wubangzhu.domain.http.response.login.DanmuResponse;
 import com.wubangzhu.domain.http.response.login.FIndAllGouWu;
+import com.wubangzhu.domain.http.response.login.LunbotuResponse;
 import com.wubangzhu.presentation.activity.GoodsInfoActivity;
 import com.wubangzhu.presentation.adapter.BuyAdapter;
 import com.wubangzhu.presentation.widgets.GlideImageLoader;
@@ -27,6 +28,9 @@ import com.wubangzhu.util.ShareKeys;
 import com.youth.banner.Banner;
 
 import org.json.JSONException;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -95,14 +99,33 @@ public class AllGoodsFragment extends BaseFragment {
                 }
             }
         });
+        new GWClient().postFindpicByType(ShareData.getShareStringData(ShareKeys.Login_UKEY), 1, new Callback2<LunbotuResponse>() {
+            @Override
+            public void onFailure(RetrofitError retrofitError) {
+
+            }
+
+            @Override
+            public void onSuccess(LunbotuResponse response, Response response2) throws InterruptedException, JSONException {
+                banner.setImageLoader(new GlideImageLoader());
+                if(response!=null && response.getPictures()!=null && response.getPictures().size()>0){
+                    List<String> list = new ArrayList<>();
+                    for(LunbotuResponse.PicturesBean bean : response.getPictures()){
+                        list.add(bean.getPath());
+                    }
+                    banner.setImages(list);
+                    banner.start();
+                }else{
+                    banner.setImages(ShareKeys.getImages());
+                    banner.start();
+                }
+            }
+        });
     }
 
     private void initView() {
-        banner.setImageLoader(new GlideImageLoader());
-        banner.setImages(ShareKeys.getImages());
-        banner.start();
 
-        barrageView.addBarrage(new Barrage("恭喜XXX猜中iPhone XS Max！"));
+
         shoplistView.setLayoutManager(new LinearLayoutManager(getContext()));
     }
 }

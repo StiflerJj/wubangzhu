@@ -73,7 +73,7 @@
             style="@style/RadioGroupTabStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/radio_main_selector"
+            android:drawableTop="@drawable/radio_gouwu_selector"
              />
 
         <RadioButton
@@ -81,14 +81,14 @@
             style="@style/RadioGroupTabStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/radio_main_selector"/>
+            android:drawableTop="@drawable/radio_yule_selector"/>
 
         <RadioButton
             android:id="@+id/radio_button_info"
             style="@style/RadioGroupTabStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawableTop="@drawable/radio_main_selector"
+            android:drawableTop="@drawable/radio_wode_selector"
 
              />
     </RadioGroup>

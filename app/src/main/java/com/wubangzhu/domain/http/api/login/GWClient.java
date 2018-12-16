@@ -5,9 +5,11 @@ import com.wubangzhu.BuildConfig;
 import com.wubangzhu.domain.http.Callback2;
 import com.wubangzhu.domain.http.Callback3;
 import com.wubangzhu.domain.http.URL;
+import com.wubangzhu.domain.http.response.login.AllMyHistoryBiao;
 import com.wubangzhu.domain.http.response.login.BaseResponse;
 import com.wubangzhu.domain.http.response.login.DanmuResponse;
 import com.wubangzhu.domain.http.response.login.FIndAllGouWu;
+import com.wubangzhu.domain.http.response.login.GoodHistoryLIst;
 import com.wubangzhu.domain.http.response.login.LoginResponse;
 import com.wubangzhu.domain.http.response.login.LunbotuResponse;
 import com.wubangzhu.domain.http.response.login.UserInfoResponse;
@@ -29,8 +31,11 @@ public class GWClient {
     public void postgwFindAll(String ukey, Callback2<FIndAllGouWu> responseCallback2){
         gouwuapi.postgwfindAll(ukey,responseCallback2);
     }
-    public void postgwBuy(String ukey,int gwsmodelid,int howmany,int xa,int xb,double paymoney, Callback2<BaseResponse> responseCallback2){
-        gouwuapi.postgoumai(ukey,gwsmodelid,howmany,xa,xb,paymoney,responseCallback2);
+    public void postgwBuy(String ukey,int userid,int gwsmodelid,int howmany,int xa,int xb,double paymoney, Callback2<BaseResponse> responseCallback2){
+        gouwuapi.postgoumai(ukey,userid,gwsmodelid,howmany,xa,xb,paymoney,responseCallback2);
+    }
+    public void postgwList(String ukey,int userid, Callback2<GoodHistoryLIst> responseCallback2){
+        gouwuapi.postGwList(ukey,userid,responseCallback2);
     }
 
 

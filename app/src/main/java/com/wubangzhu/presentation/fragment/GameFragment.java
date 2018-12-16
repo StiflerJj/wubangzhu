@@ -22,10 +22,13 @@ import com.kd.easybarrage.Barrage;
 import com.kd.easybarrage.BarrageView;
 import com.wubangzhu.R;
 import com.wubangzhu.domain.http.Callback2;
+import com.wubangzhu.domain.http.api.login.GWClient;
 import com.wubangzhu.domain.http.api.login.YLClient;
 import com.wubangzhu.domain.http.response.login.AllGoods;
 import com.wubangzhu.domain.http.response.login.AllPayGoods;
 import com.wubangzhu.domain.http.response.login.BaseResponse;
+import com.wubangzhu.domain.http.response.login.DanmuResponse;
+import com.wubangzhu.domain.http.response.login.LunbotuResponse;
 import com.wubangzhu.domain.http.response.login.StartShopResponse;
 import com.wubangzhu.presentation.adapter.FreeAdapter;
 import com.wubangzhu.presentation.adapter.PayAdapter;
@@ -36,6 +39,7 @@ import com.youth.banner.Banner;
 
 import org.json.JSONException;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -77,7 +81,8 @@ public class GameFragment extends BaseFragment {
         ButterKnife.bind(this, rootView);
         initView();
         initData(1);//1 FREE 2 PAY
-
+        getImages();
+        getNotices();
         return rootView;
     }
 
@@ -96,7 +101,6 @@ public class GameFragment extends BaseFragment {
 
                     if (response != null && response.getCode() == 0) {
                         shopmodelBeanList = response.getShopmodels();
-                        LogUtils.e("shopmodelBeanList " + shopmodelBeanList.get(0));
                         freeAdapter = new FreeAdapter(shopmodelBeanList);
                         freeAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
                             @Override
@@ -170,7 +174,7 @@ public class GameFragment extends BaseFragment {
                             @Override
                             public void onItemChildClick(BaseQuickAdapter adapter, View view, final int position) {
 //
-                                if (response.getOurGuesses().get(position).getState().equals("1")) {
+                                if (response.getOurGuesses().get(position).getState()==1) {
                                     dialog = new MaterialDialog.Builder(getContext())
                                             .customView(inputView, false)
                                             .positiveText("确定")
@@ -225,10 +229,7 @@ public class GameFragment extends BaseFragment {
 
     private void initView() {
         freeRadioBtn.setChecked(true);
-        banner.setImageLoader(new GlideImageLoader());
-        banner.setImages(ShareKeys.getImages());
-        banner.start();
-        barrageView.addBarrage(new Barrage("恭喜XXX猜中iPhone XS Max！"));
+
         mGameList.setLayoutManager(new LinearLayoutManager(getContext()));
         inputView = LayoutInflater.from(getContext()).inflate(R.layout.view_guessinput, null);
         inputViewFree = LayoutInflater.from(getContext()).inflate(R.layout.view_guessfree, null);
@@ -258,5 +259,49 @@ public class GameFragment extends BaseFragment {
         if (ischecked)
             return;
         initData(1);
+    }
+    void getImages(){
+        new GWClient().postFindpicByType(ShareData.getShareStringData(ShareKeys.Login_UKEY), 2, new Callback2<LunbotuResponse>() {
+            @Override
+            public void onFailure(RetrofitError retrofitError) {
+
+            }
+
+            @Override
+            public void onSuccess(LunbotuResponse response, Response response2) throws InterruptedException, JSONException {
+
+                if(response!=null && response.getPictures()!=null && response.getPictures().size()>0){
+                    List<String> list = new ArrayList<>();
+                    for(LunbotuResponse.PicturesBean bean : response.getPictures()){
+                        list.add(bean.getPath());
+                    }
+                    banner.setImageLoader(new GlideImageLoader());
+                    banner.setImages(list);
+                    banner.start();
+                }else{
+                    banner.setImageLoader(new GlideImageLoader());
+                    banner.setImages(ShareKeys.getImages());
+                    banner.start();
+                }
+            }
+        });
+    }
+    void getNotices(){
+        new GWClient().postFindNoticeByType(ShareData.getShareStringData(ShareKeys.Login_UKEY), 2, new Callback2<DanmuResponse>() {
+            @Override
+            public void onFailure(RetrofitError retrofitError) {
+
+            }
+
+            @Override
+            public void onSuccess(DanmuResponse response, Response response2) throws InterruptedException, JSONException {
+
+                if(response!=null && response.getNotices()!=null && response.getNotices().size()>0){
+                    for(int i=0;i<response.getNotices().size();i++){
+                        barrageView.addBarrage(new Barrage(response.getNotices().get(i).getConbody()));
+                    }
+                }
+            }
+        });
     }
 }

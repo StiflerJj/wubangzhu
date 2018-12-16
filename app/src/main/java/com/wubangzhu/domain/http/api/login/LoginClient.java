@@ -40,6 +40,11 @@ public class LoginClient {
     public void postchongzhiTest(String ukey,int userid,int money, Callback2<BaseResponse> responseCallback2){
         loginApi.postchongzhiTest(ukey,userid,money,responseCallback2);
     }
-
+    public void postShouYi(String ukey,int userid,int type, Callback2<BaseResponse> responseCallback2){
+        loginApi.postShouYi(ukey,userid,type,responseCallback2);
+    }
+    public void postShouYiAll(String ukey,int userid,Callback2<BaseResponse> responseCallback2){
+        loginApi.postShouYiAll(ukey,userid,responseCallback2);
+    }
 
 }

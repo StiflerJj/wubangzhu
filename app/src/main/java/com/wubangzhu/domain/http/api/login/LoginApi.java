@@ -27,4 +27,9 @@ public interface LoginApi {
 
     @POST("/user/chongzhitest")
     void postchongzhiTest(@Query("ukey") String ukey,@Query("userid") int userid,@Query("money") int money, Callback2<BaseResponse> callback2);
+
+    @POST("/user/tgsy")
+    void postShouYi(@Query("ukey") String ukey,@Query("userid") int userid,@Query("type") int type, Callback2<BaseResponse> callback2);
+    @POST("/user/tgsyall")
+    void postShouYiAll(@Query("ukey") String ukey,@Query("userid") int userid, Callback2<BaseResponse> callback2);
 }

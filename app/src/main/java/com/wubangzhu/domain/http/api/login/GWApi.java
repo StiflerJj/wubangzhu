@@ -2,10 +2,12 @@ package com.wubangzhu.domain.http.api.login;
 
 import com.wubangzhu.domain.http.Callback2;
 import com.wubangzhu.domain.http.response.login.AllGoods;
+import com.wubangzhu.domain.http.response.login.AllMyHistoryBiao;
 import com.wubangzhu.domain.http.response.login.AllPayGoods;
 import com.wubangzhu.domain.http.response.login.BaseResponse;
 import com.wubangzhu.domain.http.response.login.DanmuResponse;
 import com.wubangzhu.domain.http.response.login.FIndAllGouWu;
+import com.wubangzhu.domain.http.response.login.GoodHistoryLIst;
 import com.wubangzhu.domain.http.response.login.LunbotuResponse;
 import com.wubangzhu.domain.http.response.login.StartShopResponse;
 
@@ -20,9 +22,10 @@ public interface GWApi {
     @POST("/gw/findAll")//购物区所有
     void postgwfindAll(@Query("ukey") String ukey, Callback2<FIndAllGouWu> callback2);
     @POST("/gw/gw")//购物区购买
-    void postgoumai(@Query("ukey") String ukey, @Query("gwsmodelid") int gwsmodelid, @Query("howmany") int howmany,
+    void postgoumai(@Query("ukey") String ukey, @Query("userid") int userid, @Query("gwsmodelid") int gwsmodelid, @Query("howmany") int howmany,
                     @Query("xa") int xa, @Query("xb") int xb,@Query("paymoney") double paymoney,Callback2<BaseResponse> callback2);
-
+    @POST("/gw/findGwByUserid")//购物历史列表
+    void postGwList(@Query("ukey") String ukey, @Query("userid") int userid,Callback2<GoodHistoryLIst> callback2);
 
 
 

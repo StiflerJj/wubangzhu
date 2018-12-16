@@ -2,10 +2,10 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Style for "13" -->
     <!-- Add this snippet to layer-list xml in drawable. -->
-    <item android:width="342dp" android:height="39dp" android:gravity="center_vertical">
+    <item android:width="24dp" android:height="25dp" android:gravity="center">
         <shape android:shape="rectangle">
-            <corners android:radius="5dp" />
-            <solid android:color="#ffe6d3" />
+            <stroke android:width="1dp" android:color="#bfbfbf" />
+            <corners android:radius="3dp" />
         </shape>
     </item>
 </layer-list>

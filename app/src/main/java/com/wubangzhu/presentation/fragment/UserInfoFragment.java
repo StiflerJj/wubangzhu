@@ -4,7 +4,6 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
@@ -12,40 +11,37 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.alipay.sdk.app.PayTask;
-import com.blankj.utilcode.util.StringUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.wubangzhu.R;
 import com.wubangzhu.domain.http.Callback2;
 import com.wubangzhu.domain.http.Callback3;
+import com.wubangzhu.domain.http.api.login.GWClient;
 import com.wubangzhu.domain.http.api.login.LoginClient;
 import com.wubangzhu.domain.http.api.login.YLClient;
 import com.wubangzhu.domain.http.response.login.AllMyBiao;
+import com.wubangzhu.domain.http.response.login.AllMyHistoryBiao;
 import com.wubangzhu.domain.http.response.login.BaseResponse;
+import com.wubangzhu.domain.http.response.login.GoodHistoryLIst;
 import com.wubangzhu.domain.http.response.login.UserInfoResponse;
+import com.wubangzhu.presentation.adapter.BuyHistoryAdapter;
 import com.wubangzhu.presentation.adapter.MyBiaoAdapter;
+import com.wubangzhu.presentation.adapter.MyHistoryBiaoAdapter;
 import com.wubangzhu.util.ShareData;
 import com.wubangzhu.util.ShareKeys;
-import com.zhou.zhoulib.util.Const;
 
 import org.json.JSONException;
-
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -88,13 +84,17 @@ public class UserInfoFragment extends BaseFragment {
     @BindView(R.id.biao_group)
     RadioGroup biao_group;
     @BindView(R.id.biao_ing_btn)
-    RadioButton ingRadioBtn;
+    Button ingRadioBtn;
     @BindView(R.id.biao_bingo_btn)
-    RadioButton bingoRadioBtn;
+    Button bingoRadioBtn;
+    @BindView(R.id.biao_loose_btn)
+    Button looseRadioBtn;
+    @BindView(R.id.biao_judge_btn)
+    Button judgeRadioBtn;
 
 
     MaterialDialog dialog;
-    View inputView,inputViewFree;
+    View inputView, inputViewFree;
 
     MyBiaoAdapter myBiaoAdapter;
 
@@ -133,15 +133,13 @@ public class UserInfoFragment extends BaseFragment {
         mWaitBiao.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
-
     }
 
     private void initData() {
         getUserInfo();
-        getMyBiao();
-        getMyZhongBiao();
+        getMyIngBiao();
         getMyBuyGoods();
-
+        getShouyi();
     }
 
     @OnClick({R.id.info_tgbtn, R.id.info_buytiket})
@@ -235,7 +233,7 @@ public class UserInfoFragment extends BaseFragment {
         }
     }
 
-    void getUserInfo(){
+    void getUserInfo() {
         new LoginClient().postFindUser(ShareData.getShareStringData(ShareKeys.Login_UKEY),
                 ShareData.getShareIntData(ShareKeys.Login_UserId), new Callback3<UserInfoResponse>() {
                     @Override
@@ -249,12 +247,12 @@ public class UserInfoFragment extends BaseFragment {
                         if (response != null && response.getCode() == 0) {
                             UserInfoResponse.UserBean userBean = response.getUser();
                             if (userBean != null) {
-                                mPhone.setText("用户: "+userBean.getName());
-                                mTicketA.setText("未使用1.1元A卷 "+response.getUser().getXa()+"张");
-                                mTicketB.setText("未使用1.3元B卷 "+response.getUser().getXb()+"张");
+                                mPhone.setText("用户: " + userBean.getName());
+                                mTicketA.setText("未使用1.1元A卷 " + response.getUser().getXa() + "张");
+                                mTicketB.setText("未使用1.3元B卷 " + response.getUser().getXb() + "张");
                                 if (userBean.getIstg() != 0) {
                                     mTgbtn.setVisibility(View.GONE);
-                                    mTgid.setText("推广ID: "+response.getUser().getTgname());
+                                    mTgid.setText("推广ID: " + response.getUser().getTgname());
                                 }
                             }
 
@@ -264,7 +262,16 @@ public class UserInfoFragment extends BaseFragment {
                     }
                 });
     }
-    void getMyBiao(){
+
+    void getMyIngBiao() {
+        if (myBiaoAdapter != null && myBiaoAdapter.getData() != null) {
+            myBiaoAdapter.getData().clear();
+            myBiaoAdapter.notifyDataSetChanged();
+        }
+        if(historyBiaoAdapter!=null && historyBiaoAdapter.getData()!=null){
+            historyBiaoAdapter.getData().clear();
+            historyBiaoAdapter.notifyDataSetChanged();
+        }
         new YLClient().postfindMyWaitGuess(ShareData.getShareStringData(ShareKeys.Login_UKEY), ShareData.getShareIntData(ShareKeys.Login_UserId), new Callback2<AllMyBiao>() {
             @Override
             public void onFailure(RetrofitError retrofitError) {
@@ -274,12 +281,12 @@ public class UserInfoFragment extends BaseFragment {
             @Override
             public void onSuccess(final AllMyBiao response, Response response2) throws InterruptedException, JSONException {
 
-                if(response!=null && response.getOurGuesses()!=null && response.getOurGuesses().size()>0){
+                if (response != null && response.getOurGuesses() != null && response.getOurGuesses().size() > 0) {
                     myBiaoAdapter = new MyBiaoAdapter(response.getOurGuesses());
                     myBiaoAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
                         @Override
                         public void onItemChildClick(BaseQuickAdapter adapter, View view, final int position) {
-                            if(response.getOurGuesses().get(position).getStarttime()>System.currentTimeMillis()){
+                            if (response.getOurGuesses().get(position).getStarttime() > System.currentTimeMillis()) {
                                 ToastUtils.showLong(R.string.gameinfo_biao_notstart);
                                 return;
                             }
@@ -289,8 +296,8 @@ public class UserInfoFragment extends BaseFragment {
                             dialog.getCustomView().findViewById(R.id.btn_guessfree).setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {
-                                    String number = ((EditText)dialog.getCustomView().findViewById(R.id.input_guessfree)).getText().toString();
-                                    if(number.length()==0){
+                                    String number = ((EditText) dialog.getCustomView().findViewById(R.id.input_guessfree)).getText().toString();
+                                    if (number.length() == 0) {
                                         ToastUtils.showShort(R.string.gameinfo_biao_content_null);
                                         return;
                                     }
@@ -324,25 +331,71 @@ public class UserInfoFragment extends BaseFragment {
         });
 
     }
-    void getMyZhongBiao(){
-        new YLClient().postfindMyWin(ShareData.getShareStringData(ShareKeys.Login_UKEY), ShareData.getShareIntData(ShareKeys.Login_UserId),
-                new Callback2<AllMyBiao>() {
+    MyHistoryBiaoAdapter historyBiaoAdapter;
+    /**
+     * 1是赢得，2是计算中，3是历史输
+     *
+     * @param type
+     */
+    void getMyZhongBiao(int type) {
+        if (myBiaoAdapter != null && myBiaoAdapter.getData() != null) {
+            myBiaoAdapter.getData().clear();
+            myBiaoAdapter.notifyDataSetChanged();
+        }
+        if(historyBiaoAdapter!=null && historyBiaoAdapter.getData()!=null){
+            historyBiaoAdapter.getData().clear();
+            historyBiaoAdapter.notifyDataSetChanged();
+        }
+        new YLClient().postfindMyGuess(ShareData.getShareStringData(ShareKeys.Login_UKEY), ShareData.getShareIntData(ShareKeys.Login_UserId),
+                type, new Callback2<AllMyHistoryBiao>() {
                     @Override
                     public void onFailure(RetrofitError retrofitError) {
 
                     }
 
                     @Override
-                    public void onSuccess(AllMyBiao response, Response response2) throws InterruptedException, JSONException {
+                    public void onSuccess(AllMyHistoryBiao response, Response response2) throws InterruptedException, JSONException {
+
+                        if (response != null && response.getGuessjpos() != null && response.getGuessjpos().size() > 0) {
+                            historyBiaoAdapter = new MyHistoryBiaoAdapter(response.getGuessjpos());
+                            mWaitBiao.setLayoutManager(new LinearLayoutManager(getContext()));
+                            mWaitBiao.setAdapter(historyBiaoAdapter);
+                        }
+
 
                     }
                 });
 
     }
-    void getMyBuyGoods(){
+
+    void getMyBuyGoods() {
+        new GWClient().postgwList(ShareData.getShareStringData(ShareKeys.Login_UKEY), ShareData.getShareIntData(ShareKeys.Login_UserId),
+                new Callback2<GoodHistoryLIst>() {
+                    @Override
+                    public void onFailure(RetrofitError retrofitError) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(GoodHistoryLIst response, Response response2) throws InterruptedException, JSONException {
+                        if (response == null || response.getGwhistorys() == null || response.getGwhistorys().size() == 0)
+                            return;
+                        mBuyHistory.setLayoutManager(new LinearLayoutManager(getContext()));
+                        BuyHistoryAdapter buyAdapter = new BuyHistoryAdapter(getContext(), response.getGwhistorys());
+                        buyAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+
+                            }
+                        });
+                        mBuyHistory.setAdapter(buyAdapter);
+
+                    }
+                });
 
     }
-    void getTgId(){
+
+    void getTgId() {
         new LoginClient().postgoToTg(ShareData.getShareStringData(ShareKeys.Login_UKEY), ShareData.getShareIntData(ShareKeys.Login_UserId),
                 new Callback2<BaseResponse>() {
                     @Override
@@ -359,6 +412,49 @@ public class UserInfoFragment extends BaseFragment {
                         }
                     }
                 });
+    }
+
+    void getShouyi() {
+        new LoginClient().postShouYiAll(ShareData.getShareStringData(ShareKeys.Login_UKEY), ShareData.getShareIntData(ShareKeys.Login_UserId),
+                new Callback2<BaseResponse>() {
+                    @Override
+                    public void onFailure(RetrofitError retrofitError) {
+
+                    }
+
+                    @Override
+                    public void onSuccess(BaseResponse response, Response response2) throws InterruptedException, JSONException {
+
+
+                        if (response != null && response.getCode() == 0) {
+                            String[] strings = response.getMessage().split(",");
+                            mTotalIncome.setText("总收益" + strings[3] + "元");
+                            mDayIncome.setText("昨日收益：" + strings[0] + "元    " + "上周收益：" + strings[1] + "元    " + "上月收益：" + strings[2] + "元    ");
+                        }
+
+                    }
+                });
+
+    }
+
+    @OnClick({R.id.biao_ing_btn, R.id.biao_bingo_btn, R.id.biao_loose_btn, R.id.biao_judge_btn})
+    void onBtnClick(View view) {
+        switch (view.getId()) {
+            case R.id.biao_ing_btn:
+                getMyIngBiao();
+                break;
+            case R.id.biao_bingo_btn:
+                getMyZhongBiao(1);
+                break;
+            case R.id.biao_loose_btn:
+                getMyZhongBiao(3);
+                break;
+            case R.id.biao_judge_btn:
+                getMyZhongBiao(2);
+                break;
+            default:
+                break;
+        }
     }
 
 }

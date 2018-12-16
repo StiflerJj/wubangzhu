@@ -2,9 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="@dimen/dp_10">
+    android:background="#f3f3f3"
+    >
 
-
+<RelativeLayout
+    android:id="@+id/toplayout"
+    android:background="#f75046"
+    android:layout_width="500dp"
+    android:layout_height="80dp">
     <ImageView
         android:id="@+id/info_avatar"
         android:layout_width="wrap_content"
@@ -37,31 +42,48 @@
         android:text="@string/userinfo_tgbtnstr"
         android:textColor="#242424"
         android:textSize="@dimen/sp_12"/>
+</RelativeLayout>
     <RadioGroup
         android:id="@+id/biao_group"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:layout_below="@id/info_avatar"
+        android:layout_below="@id/toplayout"
         android:layout_marginTop="@dimen/dp_10"
         android:orientation="horizontal">
 
-        <RadioButton
+        <Button
             android:id="@+id/biao_ing_btn"
             style="@style/RadioGroupTabStyle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/black"
+            android:background="@drawable/radio_free"
             android:text="等待竞猜"
             android:textColor="@color/white" />
 
-        <RadioButton
+        <Button
             android:id="@+id/biao_bingo_btn"
             style="@style/RadioGroupTabStyle"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/green"
-            android:text="竞猜历史"
-            android:textColor="@color/white" />
+            android:background="@drawable/radio_pay"
+            android:text="我猜中的"
+            android:textColor="@color/black" />
+        <Button
+            android:id="@+id/biao_loose_btn"
+            style="@style/RadioGroupTabStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/radio_pay"
+            android:text="没猜中的"
+            android:textColor="@color/black" />
+        <Button
+            android:id="@+id/biao_judge_btn"
+            style="@style/RadioGroupTabStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/radio_pay"
+            android:text="计算中的"
+            android:textColor="@color/black" />
     </RadioGroup>
 
     <LinearLayout
@@ -85,12 +107,14 @@
     <TextView
         android:id="@+id/info_ticketA"
         style="@style/SmallText"
+        android:textColor="#616161"
         android:layout_below="@id/info_biao" />
 
     <TextView
         android:id="@+id/info_ticketB"
         style="@style/SmallText"
         android:layout_below="@id/info_ticketA"
+        android:textColor="#616161"
         android:layout_marginTop="@dimen/dp_10" />
 
     <Button
@@ -100,12 +124,13 @@
         android:layout_alignParentRight="true"
         android:background="@drawable/btn_buyticket"
         android:text="@string/userinfo_buystr"
+        android:textColor="#6f3911"
         android:textSize="@dimen/sp_12"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/info_buyhistorylist"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:layout_below="@id/info_buytiket"></android.support.v7.widget.RecyclerView>
 
     <TextView
@@ -116,16 +141,19 @@
     <TextView
         android:id="@+id/info_dayincome"
         style="@style/SmallText"
+        android:textColor="#a0a0a0"
         android:layout_below="@id/info_totalincome" />
 
     <TextView
         android:id="@+id/info_totalpeople"
         style="@style/MiddleText"
+        android:visibility="gone"
         android:layout_below="@id/info_dayincome" />
 
     <TextView
         android:id="@+id/info_daypeople"
         style="@style/SmallText"
+        android:visibility="gone"
         android:layout_below="@id/info_totalpeople" />
 
 </RelativeLayout>
