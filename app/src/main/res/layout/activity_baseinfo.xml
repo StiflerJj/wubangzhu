@@ -31,12 +31,12 @@
             android:textSize="@dimen/text_middle" />
         <Button
             android:id="@+id/common_title_btn"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="40dp"
+            android:layout_height="15dp"
             android:layout_marginTop="10dp"
             android:layout_marginRight="15dp"
             android:layout_alignParentRight="true"
-            android:background="@drawable/icon_riqi"
+            android:background="@drawable/icon_zhaomu"
             android:visibility="gone"
             />
         </RelativeLayout>

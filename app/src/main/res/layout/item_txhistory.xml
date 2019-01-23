@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_gravity="center"
+        android:layout_height="44dp">
+        <TextView
+            android:id="@+id/tx_time"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="提现时间"
+            android:textSize="@dimen/sp_14"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/tx_value"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="222"
+            android:textColor="#ff4b04"
+            android:textSize="@dimen/sp_14"
+            android:layout_width="match_parent"
+            android:layout_height="44dp" />
+        <TextView
+            android:id="@+id/tx_state"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="提现状态"
+            android:textSize="@dimen/sp_14"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:textColor="@color/black"/>
+        <TextView
+            android:id="@+id/tx_ordernum"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="提现订单号"
+            android:textSize="@dimen/sp_14"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:textColor="@color/black"/>
+
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px" android:background="#bdbcbd"></View>
+</LinearLayout>

@@ -46,6 +46,30 @@
             android:name=".presentation.activity.BiaoInfoActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".presentation.activity.MoneyInfoActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".presentation.activity.ZMLActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".presentation.activity.TixianActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+
+        </activity>
+        <activity
+            android:name=".presentation.activity.TixianHistoryActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+
+        </activity>
         <!-- 微信支付 -->
         <activity
             android:name="com.tsy.sdk.pay.weixin.WXPayCallbackActivity"

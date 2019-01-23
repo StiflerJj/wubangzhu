@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/info_bg">
+    <RelativeLayout
+        android:background="#f75046"
+        android:layout_width="match_parent"
+        android:layout_height="200dp">
+        <LinearLayout
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="25dp"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/balancevalue"
+                android:textColor="@color/white"
+                android:textSize="23sp"
+                android:text="1800"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/balancestr"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:text="账户余额"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginLeft="200dp"
+            android:layout_marginTop="25dp"
+            android:layout_width="120dp"
+            android:layout_height="60dp"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/totalvalue"
+                android:textColor="@color/white"
+                android:textSize="23sp"
+                android:text="1800"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <TextView
+                android:id="@+id/totalstr"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                android:text="历史总收益"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/txbg"
+        android:background="@drawable/bg_txje"
+        android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal">
+        <TextView
+            android:textColor="#4d4d4d"
+            android:textSize="14sp"
+            android:layout_marginTop="18dp"
+            android:text="请输入提现金额"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <EditText
+            android:id="@+id/tixianvalue"
+            android:textColor="#b9b9b9"
+            android:textSize="14sp"
+            android:layout_marginTop="15dp"
+            android:text="￥0.00"
+            android:inputType="numberDecimal"
+            style="@style/EdittextStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:textColor="#4d4d4d"
+            android:textSize="12sp"
+            android:layout_marginTop="25dp"
+            android:text="周三提现，手续费0.3%，不足1元，按1元计算"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_below="@id/txbg"
+        android:layout_margin="40dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/txaccount"
+            android:textColor="#4d4d4d"
+            android:textSize="14sp"
+            android:text="提现账户信息"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/zfbaccount"
+            android:textColor="#4d4d4d"
+            android:textSize="14sp"
+            android:text="支付宝账号:"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:id="@+id/fanscount"
+            android:textColor="#4d4d4d"
+            android:textSize="14sp"
+            android:text="粉丝人数：1000人"
+            android:layout_marginTop="15dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </LinearLayout>
+<Button
+    android:id="@+id/bondacount"
+    android:layout_below="@id/txbg"
+    android:layout_alignParentRight="true"
+    android:layout_marginTop="15dp"
+    android:layout_marginRight="15dp"
+    android:background="@drawable/bond_btn"
+    android:text="点击绑定"
+    android:textColor="#4d4d4d"
+    android:textSize="@dimen/sp_14"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/tx_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="60dp"
+        android:text="提现"
+        android:textColor="@color/white"
+        android:textSize="@dimen/text_middle"
+        android:background="@drawable/btn_login_bg"/>
+
+
+</RelativeLayout>
