@@ -10,11 +10,13 @@
         android:id="@+id/title_gouwu"
         style="@style/Gouwutitle"
         android:layout_toRightOf="@id/img_gouwu"
+        android:text="贝恩施人员你的"
         android:layout_marginTop="24dp"
         android:layout_marginLeft="@dimen/dp_10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <TextView
+        android:text="贝恩施人员你的"
         android:id="@+id/info_gouwu"
         style="@style/Gouwuinfo"
         android:layout_toRightOf="@id/img_gouwu"
@@ -26,6 +28,7 @@
     <TextView
         android:id="@+id/price_gouwu"
         style="@style/Gouwuprice"
+        android:text="贝恩施人员你的"
         android:layout_toRightOf="@id/img_gouwu"
         android:layout_below="@id/info_gouwu"
         android:layout_marginTop="10dp"
