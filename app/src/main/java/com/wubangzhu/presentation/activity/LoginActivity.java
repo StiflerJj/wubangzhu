@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     @BindView(R.id.login_btn)
     Button login;
     @BindView(R.id.regist_btn)
-    Button regist;
+    TextView regist;
     @BindView(R.id.tryit)
     TextView tryit;
     //密碼是否可見
@@ -58,7 +58,7 @@ public class LoginActivity extends AppCompatActivity {
             WindowManager.LayoutParams localLayoutParams = getWindow().getAttributes();
             localLayoutParams.flags = (WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS | localLayoutParams.flags);
         }
-        tryit.setText(Html.fromHtml("暂无账号，登录<font color=#ffffff>试用</font>"));
+//        tryit.setText(Html.fromHtml("暂无账号，登录<font color=#ffffff>试用</font>"));
         mPassword.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -151,7 +151,7 @@ public class LoginActivity extends AppCompatActivity {
 //        });
     }
     @OnClick(R.id.tryit) void setTryit(){
-        CommonUtil.showToast(this,"try it");
+        CommonUtil.showToast(this,"forget pwd");
     }
     @OnClick(R.id.regist_btn) void setRegist(){
         ActivityUtils.startActivity(RegistActivity.class);

@@ -5,6 +5,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.wubangzhu.R;
+import com.wubangzhu.util.ShareData;
+import com.wubangzhu.util.ShareKeys;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -17,7 +19,7 @@ public class ZMLActivity extends BaseActivity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentLayout(R.layout.activity_moneyinfo);
+        setContentLayout(R.layout.activity_zhaomuling);
         ButterKnife.bind(this);
         initData();
         initView();
@@ -28,6 +30,7 @@ public class ZMLActivity extends BaseActivity{
     private void initView() {
         setTitle("招募令");
         setBackArrow();
+        zmlUsername.setText(ShareData.getShareIntData(ShareKeys.Login_UserId)+"");
         fenxiang_txt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

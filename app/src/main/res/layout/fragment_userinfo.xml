@@ -9,7 +9,7 @@
     android:id="@+id/toplayout"
     android:background="#f75046"
     android:layout_width="500dp"
-    android:layout_height="80dp">
+    android:layout_height="100dp">
     <ImageView
         android:id="@+id/info_avatar"
         android:layout_width="wrap_content"
@@ -40,6 +40,15 @@
         android:layout_alignParentRight="true"
         android:background="@drawable/btn_gettg"
         android:text="@string/userinfo_tgbtnstr"
+        android:textColor="#242424"
+        android:textSize="@dimen/sp_12"/>
+    <Button
+        android:id="@+id/info_moneybtn"
+        style="@style/InsideBtn"
+        android:layout_below="@id/info_tgbtn"
+        android:layout_alignParentRight="true"
+        android:background="@drawable/btn_gettg"
+        android:text="资金管理"
         android:textColor="#242424"
         android:textSize="@dimen/sp_12"/>
 </RelativeLayout>

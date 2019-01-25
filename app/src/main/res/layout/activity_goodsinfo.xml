@@ -12,6 +12,7 @@
 
     <TextView
         android:id="@+id/title_gouwuinfo"
+        android:text="红枣桂圆枸杞茶"
         style="@style/Gouwutitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,6 +21,7 @@
         android:layout_marginTop="@dimen/dp_10" />
 
     <TextView
+        android:text="红枣桂圆枸杞茶"
         android:id="@+id/info_gouwuinfo"
         style="@style/Gouwuinfo"
         android:layout_width="wrap_content"
@@ -33,14 +35,46 @@
         style="@style/Gouwuprice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_below="@id/banber_goodinfo"
-        android:text="sdsdsdsd"
+        android:layout_below="@id/info_gouwuinfo"
+        android:text="红枣桂圆枸杞茶"
         android:layout_marginRight="22dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_marginTop="10dp"
+        android:drawableLeft="@drawable/btn_miaosha"/>
+    <TextView
+        android:text="运费10元"
+        android:id="@+id/yunfei_gouwuinfo"
+        style="@style/Gouwuinfo"
+        android:textSize="9sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info_gouwuinfo"
+        android:layout_toRightOf="@id/price_gouwuinfo"
+        android:layout_marginLeft="@dimen/dp_10"
         android:layout_marginTop="10dp" />
+    <TextView
+        android:text="贝恩施人员你的"
+        android:id="@+id/gouwuinfo_ticketcount"
+        style="@style/Gouwuinfo"
+        android:textSize="9sp"
+        android:layout_below="@id/price_gouwuinfo"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/gouwuinfo_cheapmoney"
+        style="@style/Gouwuprice"
+        android:textSize="@dimen/sp_14"
+        android:layout_marginTop="5dp"
+        android:text="￥13.22"
+        android:layout_toRightOf="@id/gouwuinfo_ticketcount"
+        android:layout_below="@id/price_gouwuinfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <LinearLayout
         android:orientation="horizontal"
-        android:layout_below="@id/price_gouwuinfo"
+        android:layout_below="@id/info_gouwuinfo"
         android:layout_alignParentRight="true"
         android:layout_marginRight="22dp"
         android:layout_width="wrap_content"
@@ -70,8 +104,8 @@
         android:id="@+id/gray1"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_10"
-        android:layout_below="@id/info_gouwuinfo"
-        android:layout_marginTop="19dp"
+        android:layout_below="@id/price_gouwuinfo"
+        android:layout_marginTop="29dp"
         android:background="#f3f3f3"></View>
 
     <View
@@ -98,57 +132,73 @@
         android:layout_height="1dp"
         android:layout_below="@id/red1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="15dp"
         android:background="#d0d0d0"></View>
 
     <TextView
         android:id="@+id/ticketusecount_gouwuinfo"
         style="@style/Gouwutitle"
+        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/red1"
         android:layout_margin="12dp"
         android:text="本商品可使用A卷10张
 本商品可使用B卷10张" />
+    <ImageView
+        android:layout_below="@id/checkbox_gouwuinfo"
+        android:src="@drawable/img_1"
+        android:layout_marginLeft="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ImageView
+        android:src="@drawable/img_3"
+        android:layout_below="@id/checkbox_gouwuinfo"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="60dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <EditText
         android:id="@+id/ticketacountuse_gouwuinfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ticketusecount_gouwuinfo"
-        android:layout_marginLeft="22dp"
+        android:layout_marginLeft="80dp"
         android:background="@drawable/edittext_ticketcounts"
         android:gravity="center"
         android:inputType="number"
-        android:hint="A卷使用数量" />
+        android:layout_marginTop="5dp"
+         />
 
     <EditText
         android:id="@+id/ticketbcountuse_gouwuinfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/ticketusecount_gouwuinfo"
-        android:layout_marginLeft="22dp"
-        android:layout_toRightOf="@id/ticketacountuse_gouwuinfo"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="80dp"
         android:background="@drawable/edittext_ticketcounts"
         android:gravity="center"
         android:inputType="number"
-        android:hint="B卷使用数量" />
+        android:layout_marginTop="5dp"
+        />
 
     <CheckBox
         android:id="@+id/checkbox_gouwuinfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@id/ticketacountuse_gouwuinfo"
-        android:layout_below="@id/ticketacountuse_gouwuinfo"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/gray1"
         android:text="全部使用"
-
+        android:layout_margin="@dimen/dp_10"
         />
 
     <View
         android:id="@+id/gray2"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_10"
-        android:layout_below="@id/checkbox_gouwuinfo"
+        android:layout_below="@id/ticketbcountuse_gouwuinfo"
         android:layout_marginTop="14dp"
         android:background="#f3f3f3"></View>
 

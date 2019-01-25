@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
+import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.wubangzhu.R;
@@ -35,6 +36,7 @@ import com.wubangzhu.domain.http.response.login.AllMyHistoryBiao;
 import com.wubangzhu.domain.http.response.login.BaseResponse;
 import com.wubangzhu.domain.http.response.login.GoodHistoryLIst;
 import com.wubangzhu.domain.http.response.login.UserInfoResponse;
+import com.wubangzhu.presentation.activity.MoneyInfoActivity;
 import com.wubangzhu.presentation.adapter.BuyHistoryAdapter;
 import com.wubangzhu.presentation.adapter.MyBiaoAdapter;
 import com.wubangzhu.presentation.adapter.MyHistoryBiaoAdapter;
@@ -91,6 +93,8 @@ public class UserInfoFragment extends BaseFragment {
     Button looseRadioBtn;
     @BindView(R.id.biao_judge_btn)
     Button judgeRadioBtn;
+    @BindView(R.id.info_moneybtn)
+    Button info_moneybtn;
 
 
     MaterialDialog dialog;
@@ -437,7 +441,7 @@ public class UserInfoFragment extends BaseFragment {
 
     }
 
-    @OnClick({R.id.biao_ing_btn, R.id.biao_bingo_btn, R.id.biao_loose_btn, R.id.biao_judge_btn})
+    @OnClick({R.id.biao_ing_btn, R.id.biao_bingo_btn, R.id.biao_loose_btn, R.id.biao_judge_btn,R.id.info_moneybtn})
     void onBtnClick(View view) {
         switch (view.getId()) {
             case R.id.biao_ing_btn:
@@ -451,6 +455,9 @@ public class UserInfoFragment extends BaseFragment {
                 break;
             case R.id.biao_judge_btn:
                 getMyZhongBiao(2);
+                break;
+            case R.id.info_moneybtn:
+                ActivityUtils.startActivity(MoneyInfoActivity.class);
                 break;
             default:
                 break;

@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.blankj.utilcode.util.ActivityUtils;
 import com.wubangzhu.R;
 
 import butterknife.BindView;
@@ -28,7 +29,8 @@ public class MoneyInfoActivity extends BaseActivity{
     Button bondacount;
     @BindView(R.id.tx_btn)
     Button tx_btn;
-
+    @BindView(R.id.tx_mx)
+    TextView tx_mx;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +49,20 @@ public class MoneyInfoActivity extends BaseActivity{
         GetRightButton().setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                ActivityUtils.startActivity(ZMLActivity.class);
 
+            }
+        });
+        tx_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ActivityUtils.startActivity(TixianActivity.class);
+            }
+        });
+        tx_mx.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ActivityUtils.startActivity(TixianHistoryActivity.class);
             }
         });
 

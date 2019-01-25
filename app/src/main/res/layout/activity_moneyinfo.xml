@@ -146,6 +146,15 @@
         android:textColor="@color/white"
         android:textSize="@dimen/text_middle"
         android:background="@drawable/btn_login_bg"/>
-
+    <TextView
+        android:id="@+id/tx_mx"
+        android:textColor="#929292"
+        android:textSize="14sp"
+        android:text="提现明细"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
 </RelativeLayout>

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -66,6 +67,12 @@ public class GoodsInfoActivity extends BaseActivity {
     Button btn_jian_gouwuinfo;
     @BindView(R.id.count_gouwuinfo)
     EditText editcount_gouwuinfo;
+    @BindView(R.id.gouwuinfo_ticketcount)
+    TextView gouwuinfo_ticketcount;
+    @BindView(R.id.gouwuinfo_cheapmoney)
+    TextView gouwuinfo_cheapmoney;
+    @BindView(R.id.yunfei_gouwuinfo)
+    TextView yunfei_gouwuinfo;
     FIndAllGouWu.GwshopmodelsBean goodinfo;
     int myAcount, myBcount;//我有几张AB卷
     int aCount, bCount;//此商品可使用AB卷几张
@@ -138,6 +145,9 @@ public class GoodsInfoActivity extends BaseActivity {
             bCount = goodinfo.getXb();
             ticketusecount_gouwuinfo.setText("本商品可使用A卷 " + goodinfo.getXa() + "张，可抵现金" + new DecimalFormat("#.0").format(goodinfo.getXa() * 1.1) + "元"
                     + "\r\n本商品可使用B卷 " + goodinfo.getXb() + "张，可抵现金" + new DecimalFormat("#.0").format(goodinfo.getXb() * 1.3) + "元");
+            gouwuinfo_ticketcount.setText("1.1代金券"+goodinfo.getXa()+"张, 1.3代金券"+goodinfo.getXb()+"张  可省");
+            gouwuinfo_cheapmoney.setText("￥"+(goodinfo.getXa()*1.1+goodinfo.getXb()*1.3));
+            yunfei_gouwuinfo.setText("运费："+goodinfo.getYoufei()+"元");
             btn_jia_gouwuinfo.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -197,7 +207,6 @@ public class GoodsInfoActivity extends BaseActivity {
                             });
                 }
             });
-
         }
         checkbox_gouwuinfo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -251,6 +260,12 @@ public class GoodsInfoActivity extends BaseActivity {
                 allMyTicketsValue = avalue*1.1+bvalue*1.3;
                 totalPayMoney = allGoodsValue-allMyTicketsValue;
                 needToPay(totalPayMoney);
+                int input = Integer.parseInt(charSequence.toString());
+                if(input>goodinfo.getXa()){
+                    ToastUtils.showLong("当前商品只能使用"+goodinfo.getXa()+"张A卷");
+                    ticketacountuse_gouwuinfo.setText((myAcount>goodinfo.getXa()?goodinfo.getXa():myAcount)+"");
+                }
+
             }
 
             @Override
@@ -281,6 +296,11 @@ public class GoodsInfoActivity extends BaseActivity {
                 allMyTicketsValue = avalue*1.1+bvalue*1.3;
                 totalPayMoney = allGoodsValue-allMyTicketsValue;
                 needToPay(totalPayMoney);
+                int input = Integer.parseInt(charSequence.toString());
+                if(input>goodinfo.getXb()){
+                    ToastUtils.showLong("当前商品只能使用"+goodinfo.getXb()+"张B卷");
+                    ticketbcountuse_gouwuinfo.setText((myBcount>goodinfo.getXb()?goodinfo.getXb():myBcount)+"");
+                }
             }
 
             @Override

@@ -67,6 +67,14 @@
         <activity
             android:name=".presentation.activity.TixianHistoryActivity"
             android:launchMode="singleTop"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".presentation.activity.FreePlayActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".presentation.activity.PayPlayActivity"
+            android:launchMode="singleTop"
             android:screenOrientation="portrait">
 
         </activity>

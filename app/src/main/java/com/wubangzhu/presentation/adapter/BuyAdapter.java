@@ -26,6 +26,8 @@ public class BuyAdapter extends BaseQuickAdapter<FIndAllGouWu.GwshopmodelsBean, 
         helper.setText(R.id.title_gouwu, item.getName());
         helper.setText(R.id.price_gouwu, "￥ "+item.getPirce());
         helper.setText(R.id.info_gouwu, item.getName());
+        helper.setText(R.id.info_ticketcount, "1.1代金券"+item.getXa()+"张,1.3代金券"+item.getXb()+"张  可省");
+        helper.setText(R.id.info_cheapmoney, "￥"+(item.getXa()*1.1+item.getXb()*1.3));
         Glide.with(mContext).load(item.getPicture()).into((ImageView) helper.itemView.findViewById(R.id.img_gouwu));
 
         helper.addOnClickListener(R.id.btnbuy_gouwu);

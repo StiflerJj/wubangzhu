@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:background="@color/white">
+    <ImageView
+        android:id="@+id/img_pay"
+        android:layout_width="match_parent"
+        android:layout_height="220dp" />
+    <ImageView
+        android:id="@+id/back_pay"
+        android:src="@drawable/back01"
+        android:layout_margin="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/goodname_pay"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/black"
+        android:layout_margin="10dp"
+        android:layout_below="@id/img_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/goodinfo_pay"
+        android:textSize="@dimen/sp_12"
+        android:textColor="#8b8b8b"
+        android:layout_margin="10dp"
+        android:layout_below="@id/goodname_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/yuanjiapay"
+        android:textSize="@dimen/sp_14"
+        android:textColor="#8b8b8b"
+        android:layout_margin="10dp"
+        android:layout_below="@id/goodinfo_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/goodprice_pay"
+        android:textSize="@dimen/sp_14"
+        android:textColor="#df0204"
+        android:layout_margin="10dp"
+        android:layout_below="@id/goodinfo_pay"
+        android:layout_toRightOf="@id/yuanjiapay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/jindupay"
+        android:textSize="@dimen/sp_14"
+        android:textColor="#8b8b8b"
+        android:layout_margin="10dp"
+        android:layout_below="@id/goodinfo_pay"
+        android:layout_toRightOf="@id/goodprice_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <View
+        android:id="@+id/gray1_pay"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_10"
+        android:layout_below="@id/goodprice_pay"
+        android:layout_marginTop="@dimen/dp_10"
+        android:background="#f3f3f3"></View>
+    <ImageView
+        android:src="@drawable/img_02"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:layout_below="@id/gray1_pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_40"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/payrule"
+            android:layout_weight="1"
+            android:text="竞猜规则"
+            android:textColor="#3e3e3e"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rulebtn_bg"/>
+        <Button
+            android:id="@+id/payplay_btn"
+            android:layout_weight="1"
+            android:text="1.1兑换1.3"
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/playbtn_bg"/>
+
+    </LinearLayout>
+
+
+
+</RelativeLayout>

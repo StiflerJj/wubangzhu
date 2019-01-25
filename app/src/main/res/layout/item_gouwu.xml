@@ -25,6 +25,7 @@
         android:layout_marginLeft="@dimen/dp_10"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
     <TextView
         android:id="@+id/price_gouwu"
         style="@style/Gouwuprice"
@@ -33,6 +34,28 @@
         android:layout_below="@id/info_gouwu"
         android:layout_marginTop="10dp"
         android:layout_marginLeft="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/btn_miaosha" />
+    <TextView
+        android:text="贝恩施人员你的"
+        android:id="@+id/info_ticketcount"
+        style="@style/Gouwuinfo"
+        android:textSize="9sp"
+        android:layout_toRightOf="@id/img_gouwu"
+        android:layout_below="@id/price_gouwu"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/info_cheapmoney"
+        style="@style/Gouwuprice"
+        android:textSize="@dimen/sp_14"
+        android:layout_marginTop="5dp"
+        android:text="￥13.22"
+        android:layout_toRightOf="@id/info_ticketcount"
+        android:layout_below="@id/price_gouwu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <Button
@@ -45,7 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <View
-        android:layout_below="@id/btnbuy_gouwu"
+        android:layout_below="@id/info_ticketcount"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="18dp"
         android:background="#d0d0d0"

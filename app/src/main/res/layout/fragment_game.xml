@@ -39,6 +39,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             style="@style/RadioGroupTabStyle"
+
             />
         <RadioButton
             android:id="@+id/pay_btn"
