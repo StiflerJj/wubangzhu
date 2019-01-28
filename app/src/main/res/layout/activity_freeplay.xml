@@ -84,6 +84,11 @@
 
     </LinearLayout>
 
-
+<ImageView
+    android:id="@+id/img_freerule"
+    android:background="@drawable/freerule"
+    android:visibility="gone"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
 
 </RelativeLayout>

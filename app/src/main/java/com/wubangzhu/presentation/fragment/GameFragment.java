@@ -1,8 +1,10 @@
 package com.wubangzhu.presentation.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -15,6 +17,7 @@ import android.widget.RadioGroup;
 import com.afollestad.materialdialogs.DialogAction;
 import com.afollestad.materialdialogs.MaterialDialog;
 import com.afollestad.materialdialogs.util.DialogUtils;
+import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.LogUtils;
 import com.blankj.utilcode.util.ToastUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -30,6 +33,8 @@ import com.wubangzhu.domain.http.response.login.BaseResponse;
 import com.wubangzhu.domain.http.response.login.DanmuResponse;
 import com.wubangzhu.domain.http.response.login.LunbotuResponse;
 import com.wubangzhu.domain.http.response.login.StartShopResponse;
+import com.wubangzhu.presentation.activity.FreePlayActivity;
+import com.wubangzhu.presentation.activity.PayPlayActivity;
 import com.wubangzhu.presentation.adapter.FreeAdapter;
 import com.wubangzhu.presentation.adapter.PayAdapter;
 import com.wubangzhu.presentation.widgets.GlideImageLoader;
@@ -97,7 +102,7 @@ public class GameFragment extends BaseFragment {
                 }
 
                 @Override
-                public void onSuccess(AllGoods response, Response response2) throws InterruptedException, JSONException {
+                public void onSuccess(final AllGoods response, Response response2) throws InterruptedException, JSONException {
 
                     if (response != null && response.getCode() == 0) {
                         shopmodelBeanList = response.getShopmodels();
@@ -105,51 +110,54 @@ public class GameFragment extends BaseFragment {
                         freeAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
                             @Override
                             public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                                new YLClient().poststartShop(ShareData.getShareStringData(ShareKeys.Login_UKEY), ShareData.getShareIntData(ShareKeys.Login_UserId),
-                                        shopmodelBeanList.get(position).getId(), new Callback2<StartShopResponse>() {
-                                            @Override
-                                            public void onFailure(RetrofitError retrofitError) {
-
-                                            }
-
-                                            @Override
-                                            public void onSuccess(final StartShopResponse response, Response response2) throws InterruptedException, JSONException {
-
-                                                if (response != null && response.getCode() == 0) {
-                                                    dialog = new MaterialDialog.Builder(getContext())
-                                                            .customView(inputViewFree, false).show();
-                                                    dialog.getCustomView().findViewById(R.id.btn_guessfree).setOnClickListener(new View.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(View view) {
-                                                            String number = ((EditText)dialog.getCustomView().findViewById(R.id.input_guessfree)).getText().toString();
-                                                            if(number.length()==0){
-                                                                ToastUtils.showShort(R.string.gameinfo_biao_content_null);
-                                                                return;
-                                                            }
-                                                            new YLClient().postguessShop(ShareData.getShareStringData(ShareKeys.Login_UKEY), response.getShmhistory().getId(),
-                                                                    number, new Callback2<BaseResponse>() {
-                                                                        @Override
-                                                                        public void onFailure(RetrofitError retrofitError) {
-
-                                                                        }
-
-                                                                        @Override
-                                                                        public void onSuccess(BaseResponse response, Response response2) throws InterruptedException, JSONException {
-
-                                                                        }
-                                                                    });
-                                                        }
-                                                    });
-                                                    dialog.getCustomView().findViewById(R.id.btn_guessfreecancel).setOnClickListener(new View.OnClickListener() {
-                                                        @Override
-                                                        public void onClick(View view) {
-                                                            dialog.dismiss();
-                                                        }
-                                                    });
-
-                                                }
-                                            }
-                                        });
+                                Intent intent = new Intent(getContext(),FreePlayActivity.class);
+                                intent.putExtra("freegood",response.getShopmodels().get(position));
+                                ActivityUtils.startActivity(intent);
+//                                new YLClient().poststartShop(ShareData.getShareStringData(ShareKeys.Login_UKEY), ShareData.getShareIntData(ShareKeys.Login_UserId),
+//                                        shopmodelBeanList.get(position).getId(), new Callback2<StartShopResponse>() {
+//                                            @Override
+//                                            public void onFailure(RetrofitError retrofitError) {
+//
+//                                            }
+//
+//                                            @Override
+//                                            public void onSuccess(final StartShopResponse response, Response response2) throws InterruptedException, JSONException {
+//
+//                                                if (response != null && response.getCode() == 0) {
+//                                                    dialog = new MaterialDialog.Builder(getContext())
+//                                                            .customView(inputViewFree, false).show();
+//                                                    dialog.getCustomView().findViewById(R.id.btn_guessfree).setOnClickListener(new View.OnClickListener() {
+//                                                        @Override
+//                                                        public void onClick(View view) {
+//                                                            String number = ((EditText)dialog.getCustomView().findViewById(R.id.input_guessfree)).getText().toString();
+//                                                            if(number.length()==0){
+//                                                                ToastUtils.showShort(R.string.gameinfo_biao_content_null);
+//                                                                return;
+//                                                            }
+//                                                            new YLClient().postguessShop(ShareData.getShareStringData(ShareKeys.Login_UKEY), response.getShmhistory().getId(),
+//                                                                    number, new Callback2<BaseResponse>() {
+//                                                                        @Override
+//                                                                        public void onFailure(RetrofitError retrofitError) {
+//
+//                                                                        }
+//
+//                                                                        @Override
+//                                                                        public void onSuccess(BaseResponse response, Response response2) throws InterruptedException, JSONException {
+//
+//                                                                        }
+//                                                                    });
+//                                                        }
+//                                                    });
+//                                                    dialog.getCustomView().findViewById(R.id.btn_guessfreecancel).setOnClickListener(new View.OnClickListener() {
+//                                                        @Override
+//                                                        public void onClick(View view) {
+//                                                            dialog.dismiss();
+//                                                        }
+//                                                    });
+//
+//                                                }
+//                                            }
+//                                        });
 
                             }
                         });
@@ -173,49 +181,52 @@ public class GameFragment extends BaseFragment {
                         payAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
                             @Override
                             public void onItemChildClick(BaseQuickAdapter adapter, View view, final int position) {
+                                Intent intent = new Intent(getContext(),PayPlayActivity.class);
+                                intent.putExtra("paygood",response.getOurGuesses().get(position));
+                                ActivityUtils.startActivity(intent);
 //
-                                if (response.getOurGuesses().get(position).getState()==1) {
-                                    dialog = new MaterialDialog.Builder(getContext())
-                                            .customView(inputView, false)
-                                            .positiveText("确定")
-                                            .negativeText("取消")
-                                            .onPositive(new MaterialDialog.SingleButtonCallback() {
-                                                @Override
-                                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-                                                    String initNumber = ((EditText) dialog.getCustomView().findViewById(R.id.input_guess)).getText().toString();
-                                                    if(initNumber.length()==0){
-                                                        ToastUtils.showShort(R.string.gameinfo_biao_content_null);
-                                                        return;
-                                                    }
-                                                    new YLClient().postbaomingPay(ShareData.getShareStringData(ShareKeys.Login_UKEY),
-                                                            ShareData.getShareIntData(ShareKeys.Login_UserId), response.getOurGuesses().get(position).getId(), Integer.parseInt(initNumber),
-                                                            new Callback2<BaseResponse>() {
-                                                                @Override
-                                                                public void onFailure(RetrofitError retrofitError) {
-
-                                                                }
-
-                                                                @Override
-                                                                public void onSuccess(BaseResponse response, Response response2) throws InterruptedException, JSONException {
-
-                                                                }
-                                                            }
-
-
-                                                    );
-                                                }
-                                            })
-                                            .onNegative(new MaterialDialog.SingleButtonCallback() {
-                                                @Override
-                                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
-
-                                                }
-                                            })
-                                            .show();
-
-                                } else {
-
-                                }
+//                                if (response.getOurGuesses().get(position).getState()==1) {
+//                                    dialog = new MaterialDialog.Builder(getContext())
+//                                            .customView(inputView, false)
+//                                            .positiveText("确定")
+//                                            .negativeText("取消")
+//                                            .onPositive(new MaterialDialog.SingleButtonCallback() {
+//                                                @Override
+//                                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+//                                                    String initNumber = ((EditText) dialog.getCustomView().findViewById(R.id.input_guess)).getText().toString();
+//                                                    if(initNumber.length()==0){
+//                                                        ToastUtils.showShort(R.string.gameinfo_biao_content_null);
+//                                                        return;
+//                                                    }
+//                                                    new YLClient().postbaomingPay(ShareData.getShareStringData(ShareKeys.Login_UKEY),
+//                                                            ShareData.getShareIntData(ShareKeys.Login_UserId), response.getOurGuesses().get(position).getId(), Integer.parseInt(initNumber),
+//                                                            new Callback2<BaseResponse>() {
+//                                                                @Override
+//                                                                public void onFailure(RetrofitError retrofitError) {
+//
+//                                                                }
+//
+//                                                                @Override
+//                                                                public void onSuccess(BaseResponse response, Response response2) throws InterruptedException, JSONException {
+//
+//                                                                }
+//                                                            }
+//
+//
+//                                                    );
+//                                                }
+//                                            })
+//                                            .onNegative(new MaterialDialog.SingleButtonCallback() {
+//                                                @Override
+//                                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+//
+//                                                }
+//                                            })
+//                                            .show();
+//
+//                                } else {
+//
+//                                }
 
 
                             }
@@ -229,8 +240,8 @@ public class GameFragment extends BaseFragment {
 
     private void initView() {
         freeRadioBtn.setChecked(true);
-
-        mGameList.setLayoutManager(new LinearLayoutManager(getContext()));
+        mGameList.setLayoutManager(new GridLayoutManager(getContext(),2));
+//        mGameList.setLayoutManager(new LinearLayoutManager(getContext()));
         inputView = LayoutInflater.from(getContext()).inflate(R.layout.view_guessinput, null);
         inputViewFree = LayoutInflater.from(getContext()).inflate(R.layout.view_guessfree, null);
     }
@@ -252,6 +263,8 @@ public class GameFragment extends BaseFragment {
         if (ischecked)
             return;
         initData(2);
+        changeBtn(false);
+
     }
 
     @OnCheckedChanged(R.id.pay_btn)
@@ -259,6 +272,7 @@ public class GameFragment extends BaseFragment {
         if (ischecked)
             return;
         initData(1);
+        changeBtn(true);
     }
     void getImages(){
         new GWClient().postFindpicByType(ShareData.getShareStringData(ShareKeys.Login_UKEY), 2, new Callback2<LunbotuResponse>() {
@@ -303,5 +317,19 @@ public class GameFragment extends BaseFragment {
                 }
             }
         });
+    }
+    void changeBtn(boolean isFree){
+        if(isFree){
+            freeRadioBtn.setBackground(getResources().getDrawable(R.drawable.radio_free));
+            payRadioBtn.setBackground(getResources().getDrawable(R.drawable.radio_pay));
+            freeRadioBtn.setTextColor(getResources().getColor(R.color.white));
+            payRadioBtn.setTextColor(getResources().getColor(R.color.radio_unselected));
+
+        }else {
+            freeRadioBtn.setBackground(getResources().getDrawable(R.drawable.radio_pay));
+            payRadioBtn.setBackground(getResources().getDrawable(R.drawable.radio_free));
+            freeRadioBtn.setTextColor(getResources().getColor(R.color.radio_unselected));
+            payRadioBtn.setTextColor(getResources().getColor(R.color.white));
+        }
     }
 }

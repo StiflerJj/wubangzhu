@@ -94,7 +94,7 @@ public class UserInfoFragment extends BaseFragment {
     @BindView(R.id.biao_judge_btn)
     Button judgeRadioBtn;
     @BindView(R.id.info_moneybtn)
-    Button info_moneybtn;
+    ImageView info_moneybtn;
 
 
     MaterialDialog dialog;

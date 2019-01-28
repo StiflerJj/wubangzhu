@@ -32,6 +32,14 @@
         android:layout_below="@id/info_phone"
         android:layout_margin="@dimen/dp_10"
         android:layout_toRightOf="@id/info_avatar" />
+    <ImageView
+        android:id="@+id/info_moneybtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/info_tgid"
+        android:layout_margin="@dimen/dp_10"
+        android:src="@drawable/img_zijinguanli"
+        android:layout_toRightOf="@id/info_avatar" />
 
     <Button
         android:id="@+id/info_tgbtn"
@@ -40,15 +48,6 @@
         android:layout_alignParentRight="true"
         android:background="@drawable/btn_gettg"
         android:text="@string/userinfo_tgbtnstr"
-        android:textColor="#242424"
-        android:textSize="@dimen/sp_12"/>
-    <Button
-        android:id="@+id/info_moneybtn"
-        style="@style/InsideBtn"
-        android:layout_below="@id/info_tgbtn"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/btn_gettg"
-        android:text="资金管理"
         android:textColor="#242424"
         android:textSize="@dimen/sp_12"/>
 </RelativeLayout>

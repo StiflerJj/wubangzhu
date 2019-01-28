@@ -416,6 +416,7 @@
     <color name="side_bar">#919091</color>
     <color name="side_bar_pressed">#BFBFBF</color>
     <color name="reverse_item_textcolor">#bababa</color>
+    <color name="radio_unselected">#a2a2a2</color>
 
 
 

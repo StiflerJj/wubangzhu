@@ -15,17 +15,31 @@ import java.util.List;
 public class FreeAdapter extends BaseQuickAdapter<AllGoods.ShopmodelsBean, BaseViewHolder> {
 
     public FreeAdapter(List<AllGoods.ShopmodelsBean> bean) {
-        super(R.layout.item_yule, bean);
+        super(R.layout.item_grid, bean);
     }
 
 
     @Override
     protected void convert(BaseViewHolder helper, AllGoods.ShopmodelsBean item) {
-        helper.setText(R.id.title_yule, item.getName());
-        helper.setText(R.id.info_yule, item.getName());
-        helper.setText(R.id.price_yule, item.getPrice()+"元");
-        Glide.with(mContext).load(item.getPicture()).into((ImageView) helper.itemView.findViewById(R.id.img_yule));
-        helper.addOnClickListener(R.id.btnbuy_yule);
+        helper.setText(R.id.txt_good, item.getName());
+        helper.setText(R.id.btn_good, "免费报名");
+        Glide.with(mContext).load(item.getPicture()).into((ImageView) helper.itemView.findViewById(R.id.img_good));
+        helper.addOnClickListener(R.id.btn_good);
 
     }
+//
+//    public FreeAdapter(List<AllGoods.ShopmodelsBean> bean) {
+//        super(R.layout.item_yule, bean);
+//    }
+//
+//
+//    @Override
+//    protected void convert(BaseViewHolder helper, AllGoods.ShopmodelsBean item) {
+//        helper.setText(R.id.title_yule, item.getName());
+//        helper.setText(R.id.info_yule, item.getName());
+//        helper.setText(R.id.price_yule, item.getPrice()+"元");
+//        Glide.with(mContext).load(item.getPicture()).into((ImageView) helper.itemView.findViewById(R.id.img_yule));
+//        helper.addOnClickListener(R.id.btnbuy_yule);
+//
+//    }
 }

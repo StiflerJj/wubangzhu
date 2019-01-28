@@ -1,26 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:orientation="vertical" android:layout_width="wrap_content"
+    android:layout_height="wrap_content" android:background="@drawable/bg_dialog">
     <TextView
-        android:text="@string/gameinfo_biao_title"
+        android:id="@+id/jingcaitext"
+        android:text="竞猜中"
         android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:layout_marginTop="@dimen/dp_40"
-        android:text="@string/gameinfo_biao_content"
+        android:textSize="@dimen/sp_14"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:background="#f75046"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        android:drawableRight="@drawable/img_colse"
+        android:paddingRight="5dp"/>
+    <ImageView
+        android:layout_marginTop="@dimen/dp_10"
+        android:src="@drawable/img_03"
         android:layout_gravity="center"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
     <EditText
         android:id="@+id/input_guessfree"
         android:layout_marginTop="@dimen/dp_4"
+        android:background="@drawable/bg_jingcaiedit"
         android:layout_gravity="center"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:inputType="numberDecimal"/>
+        android:paddingLeft="@dimen/dp_10"
+        android:layout_width="120dp"
+        android:layout_height="43dp"
+        android:inputType="numberDecimal"
+        android:imeOptions="actionDone"/>
+    <TextView
+        android:id="@+id/tips_guessfree"
+        android:textSize="@dimen/sp_12"
+        android:textColor="#848484"
+        android:layout_marginTop="5dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
     <LinearLayout
+        android:visibility="gone"
         android:layout_gravity="center"
         android:gravity="center"
         android:padding="20dp"

@@ -1,5 +1,6 @@
 package com.wubangzhu.domain.http.response.login;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class AllPayGoods extends BaseResponse{
@@ -15,7 +16,7 @@ public class AllPayGoods extends BaseResponse{
         this.ourGuesses = ourGuesses;
     }
 
-    public static class OurGuessesBean {
+    public static class OurGuessesBean implements Serializable{
         /**
          * id : 22
          * name : 苹果8黑色64G

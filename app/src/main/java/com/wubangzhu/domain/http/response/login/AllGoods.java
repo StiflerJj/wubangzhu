@@ -1,5 +1,6 @@
 package com.wubangzhu.domain.http.response.login;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class AllGoods extends BaseResponse{
@@ -15,7 +16,7 @@ public class AllGoods extends BaseResponse{
         this.shopmodels = shopmodels;
     }
 
-    public static class ShopmodelsBean {
+    public static class ShopmodelsBean implements Serializable{
         /**
          * id : 1
          * type : 1
