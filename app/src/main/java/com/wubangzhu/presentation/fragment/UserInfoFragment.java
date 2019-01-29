@@ -78,9 +78,11 @@ public class UserInfoFragment extends BaseFragment {
     @BindView(R.id.info_tgbtn)
     Button mTgbtn;
     @BindView(R.id.info_buytiket)
-    Button mBuybtn;
+    TextView mBuybtn;
     @BindView(R.id.info_waitbiao)
     RecyclerView mWaitBiao;
+    @BindView(R.id.info_zhongbiao)
+    RecyclerView info_zhongbiao;
     @BindView(R.id.info_buyhistorylist)
     RecyclerView mBuyHistory;
     @BindView(R.id.biao_group)
@@ -143,7 +145,7 @@ public class UserInfoFragment extends BaseFragment {
         getUserInfo();
         getMyIngBiao();
         getMyBuyGoods();
-        getShouyi();
+//        getShouyi();
     }
 
     @OnClick({R.id.info_tgbtn, R.id.info_buytiket})
@@ -252,8 +254,8 @@ public class UserInfoFragment extends BaseFragment {
                             UserInfoResponse.UserBean userBean = response.getUser();
                             if (userBean != null) {
                                 mPhone.setText("用户: " + userBean.getName());
-                                mTicketA.setText("未使用1.1元A卷 " + response.getUser().getXa() + "张");
-                                mTicketB.setText("未使用1.3元B卷 " + response.getUser().getXb() + "张");
+                                mTicketA.setText("剩余" + response.getUser().getXa() + "张");
+                                mTicketB.setText("剩余" + response.getUser().getXb() + "张");
                                 if (userBean.getIstg() != 0) {
                                     mTgbtn.setVisibility(View.GONE);
                                     mTgid.setText("推广ID: " + response.getUser().getTgname());

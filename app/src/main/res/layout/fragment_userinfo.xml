@@ -53,6 +53,7 @@
 </RelativeLayout>
     <RadioGroup
         android:id="@+id/biao_group"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_below="@id/toplayout"
@@ -93,63 +94,136 @@
             android:text="计算中的"
             android:textColor="@color/black" />
     </RadioGroup>
+    <LinearLayout
+        android:id="@+id/info_biaostr"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@id/biao_group"
+        android:layout_marginTop="@dimen/dp_10"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:text="等待开标"
+            android:gravity="center"
+            style="@style/MiddleText"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
 
+        <TextView
+            android:text="拍中"
+            android:gravity="center"
+            style="@style/MiddleText"
+            android:layout_weight="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
     <LinearLayout
         android:id="@+id/info_biao"
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:layout_below="@id/biao_group"
-        android:layout_marginTop="@dimen/dp_10"
+        android:layout_below="@id/info_biaostr"
+
         android:orientation="horizontal">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/info_waitbiao"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginRight="@dimen/dp_10"
+            android:layout_margin="@dimen/dp_10"
+            android:background="@drawable/bg_list"
             android:layout_weight="1"></android.support.v7.widget.RecyclerView>
 
-
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/info_zhongbiao"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/dp_10"
+            android:background="@drawable/bg_list"
+            android:layout_weight="1"></android.support.v7.widget.RecyclerView>
     </LinearLayout>
 
+    <RelativeLayout
+        android:id="@+id/rl_tickets"
+        android:layout_below="@id/info_biao"
+        android:layout_width="match_parent"
+        android:layout_height="115dp"
+        android:background="@color/white">
+        <TextView
+            android:text="卡卷"
+            style="@style/MiddleText"
+            android:textColor="@color/black"
+            android:layout_margin="13dp"/>
+        <TextView
+            android:id="@+id/info_buytiket"
+            android:text="购买>>"
+            android:layout_alignParentRight="true"
+            style="@style/MiddleText"
+            android:textColor="#f75046"
+            android:layout_margin="13dp"/>
+        <ImageView
+            android:id="@+id/info_img1"
+            android:src="@drawable/img_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/info_buytiket"
+            android:layout_marginLeft="50dp"/>
+        <ImageView
+            android:src="@drawable/img_3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/info_buytiket"
+            android:layout_marginLeft="210dp"/>
     <TextView
         android:id="@+id/info_ticketA"
         style="@style/SmallText"
         android:textColor="#616161"
-        android:layout_below="@id/info_biao" />
+        android:layout_below="@id/info_img1"
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginLeft="70dp"
+        android:text="剩余3张"/>
 
     <TextView
         android:id="@+id/info_ticketB"
         style="@style/SmallText"
-        android:layout_below="@id/info_ticketA"
+        android:layout_below="@id/info_img1"
         android:textColor="#616161"
-        android:layout_marginTop="@dimen/dp_10" />
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_marginLeft="240dp"
+        android:text="剩余3张"/>
 
-    <Button
-        android:id="@+id/info_buytiket"
-        style="@style/InsideBtn"
-        android:layout_alignTop="@+id/info_ticketA"
-        android:layout_alignParentRight="true"
-        android:background="@drawable/btn_buyticket"
-        android:text="@string/userinfo_buystr"
-        android:textColor="#6f3911"
-        android:textSize="@dimen/sp_12"/>
 
+    </RelativeLayout>
+    <TextView
+        android:id="@+id/wodedingdan"
+        android:text="我的订单"
+        android:paddingLeft="@dimen/dp_10"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@id/rl_tickets"
+        android:layout_marginTop="@dimen/dp_10"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/info_buyhistorylist"
+        android:paddingLeft="@dimen/dp_10"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_below="@id/info_buytiket"></android.support.v7.widget.RecyclerView>
+        android:layout_height="match_parent"
+        android:layout_below="@id/wodedingdan"
+        android:background="@color/white"
+        ></android.support.v7.widget.RecyclerView>
 
     <TextView
         android:id="@+id/info_totalincome"
         style="@style/MiddleText"
+        android:visibility="gone"
         android:layout_below="@id/info_buyhistorylist" />
 
     <TextView
         android:id="@+id/info_dayincome"
         style="@style/SmallText"
         android:textColor="#a0a0a0"
+        android:visibility="gone"
         android:layout_below="@id/info_totalincome" />
 
     <TextView

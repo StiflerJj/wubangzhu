@@ -18,7 +18,8 @@ public class MyBiaoAdapter extends BaseQuickAdapter<AllMyBiao.OurGuessesBean, Ba
 
     @Override
     protected void convert(BaseViewHolder helper, AllMyBiao.OurGuessesBean item) {
-        helper.setText(R.id.ingbiao_text, item.getName()+"    竞猜编号："+item.getId());
+        helper.setText(R.id.ingbiao_text, item.getName());
+//                +"    竞猜编号："+item.getId());
         helper.addOnClickListener(R.id.ingbiao_btn);
 
     }
